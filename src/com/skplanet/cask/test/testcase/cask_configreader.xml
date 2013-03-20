@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+    <server name="userhost" port="2222" maxThreads="512"/>
+    
+    <services>
+        <service url="/user" class="UserService.class" 
+                 mbean="com.skplanet.cask.monitor.SimpleServiceMonitor" />
+    </services>    
+</configuration>

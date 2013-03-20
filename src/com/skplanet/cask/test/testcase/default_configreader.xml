@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+    <server name="defaulthost" port="1111" maxThreads="111"/>
+    
+    <services>
+        <service url="/default" class="DefaultService.class"  exec="batch" method="post" />
+        <service url="/default2" class="DefaultService2.class" exec="request"  />
+    </services>
+     
+</configuration>

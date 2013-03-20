@@ -1,0 +1,53 @@
+
+           Cask Server Vesion 1.0.4
+                   Release Notes
+
+            http://www.skplanet.co.kr
+
+--------------------
+1.0.4
+- pid based startup, stop
+- remove unused files.
+
+1.0.3
+- minor source clean 
+
+1.0.2
+- fix to return runtime information for web ui. 
+
+1.0.1
+- add serverId param to processservice api
+
+1.0 
+- rename postino to cask
+- make cask as a library inlcluding build environment 
+
+0.5
+- log db param
+- fix static warning
+
+0.4.1
+- BUG : path to be large string when lopping.
+- add param : makeTempDir for copying hdfs.
+- send key-value to CIS for temp
+
+0.4.0
+- modify classpath position for log4j : there is log4j.properties in hadoop-core.jar
+- test diff tool
+- add test cases except service-specific cases. 
+- daily build with hudson
+
+0.3.1
+- add release notes service. 
+
+0.3.0
+- add read api.
+- add filetransfer service.
+
+0.2.0
+- make container.
+- common functions of the container. 
+
+0.1.0
+- start project.
+

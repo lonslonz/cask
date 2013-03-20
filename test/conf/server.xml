@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+    <server name="localhost" port="28888" contextPath="cask"/>
+    <services>
+        <service url="/testdefaultbean" 
+                 class="com.skplanet.cask.test.testcase.TestDefaultSimpleService"  
+                 exec="request" 
+                 method="post" 
+                 mbean="com.skplanet.cask.test.testcase.TestDefaultMonitor"/>
+                 
+    </services>
+
+    <datasources>
+        <!-- 
+        <datasource id = "caskRuntime">
+            <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+            <url>jdbc:mysql://localhost:3306/cask_test?autoReconnect=true</url>
+            <username>lons</username>
+            <password>1234</password>
+            <initSQL>SELECT 1</initSQL>
+            <initialSize>10</initialSize>
+            <minIdle>10</minIdle>
+            <maxIdle>100</maxIdle>
+            <maxActive>100</maxActive>
+            <defaultAutoCommit>false</defaultAutoCommit>
+            <validateQuery>SELECT 1</validateQuery>
+        </datasource>
+         -->
+        <datasource id = "testpool">
+        </datasource>
+    </datasources>
+    
+    <properties>
+        <property key = "saveRuntimeIntoDb" value = "false"/>
+        <property key = "runtimeDb" value = "caskRuntime"/>
+        <property key = "testftp" value = "1.1.1.1"/>
+        <property key = "testhome" value = "/test/home/"/>
+        <property key = "testfile" value = "/test/text.txt"/>
+    </properties>
+</configuration>

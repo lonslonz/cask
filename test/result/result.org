@@ -1,0 +1,1386 @@
++++ Normal test
+++ com.skplanet.cask.test.testcase.ConfigReaderTest
++ testNothingDefault
+- read xml from : com/skplanet/cask/test/testcase
+user : com/skplanet/cask/test/testcase/nothing_configreader.xml
+default : com/skplanet/cask/test/testcase/default_configreader.xml
+- server info : 
+name = defaulthost, port = 1111, maxThreads = 111, contextPath = null, servicePath = null
+- service info list : 
+(1/2) url = /default, className = DefaultService.class, execType = batch, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+(2/2) url = /default2, className = DefaultService2.class, execType = request, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+++ com.skplanet.cask.test.testcase.ConfigReaderTest
++ testUserDefault
+- read xml from : com/skplanet/cask/test/testcase
+user : com/skplanet/cask/test/testcase/cask_configreader.xml
+default : com/skplanet/cask/test/testcase/default_configreader.xml
+- server info : 
+name = userhost, port = 2222, maxThreads = 512, contextPath = null, servicePath = null
+- service info list : 
+(1/3) url = /user, className = UserService.class, execType = request, mbeanClassName = com.skplanet.cask.monitor.SimpleServiceMonitor, method = post, inClass = null, outClass = null, sleepMSec = null
+(2/3) url = /default, className = DefaultService.class, execType = batch, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+(3/3) url = /default2, className = DefaultService2.class, execType = request, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testStartupShutdown
+- server info : 
+name = localhost, port = 28888, maxThreads = 512, contextPath = cask, servicePath = /
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testGetServices
+- configured server info : 
+(1/5) url = /testdefaultbean, className = com.skplanet.cask.test.testcase.TestDefaultSimpleService, execType = request, mbeanClassName = com.skplanet.cask.test.testcase.TestDefaultMonitor, method = post, inClass = null, outClass = null, sleepMSec = null
+(2/5) url = /version, className = com.skplanet.cask.container.service.Version, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+(3/5) url = /releasenotes, className = com.skplanet.cask.container.service.ReleaseNotes, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+(4/5) url = /processlist, className = com.skplanet.cask.container.service.Process, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+(5/5) url = /servicelist, className = com.skplanet.cask.container.service.ProcessService, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+- registered server info : 
+(1/20) /processlist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(2/20) /releasenotes => com.skplanet.cask.container.service.SimpleServiceAdapter
+(3/20) /servicelist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(4/20) /testdefaultbean => com.skplanet.cask.container.service.SimpleServiceAdapter
+(5/20) /version => com.skplanet.cask.container.service.SimpleServiceAdapter
+(6/20) com.skplanet.cask.container.service.Process => com.skplanet.cask.container.service.Process
+(7/20) com.skplanet.cask.container.service.ProcessService => com.skplanet.cask.container.service.ProcessService
+(8/20) com.skplanet.cask.container.service.ReleaseNotes => com.skplanet.cask.container.service.ReleaseNotes
+(9/20) com.skplanet.cask.container.service.Version => com.skplanet.cask.container.service.Version
+(10/20) com.skplanet.cask.test.testcase.TestDefaultSimpleService => com.skplanet.cask.test.testcase.TestDefaultSimpleService
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testAddService
+- registered server info : insert /addtestsimple
+(1/22) /addtestsimple => com.skplanet.cask.container.service.SimpleServiceAdapter
+(2/22) /processlist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(3/22) /releasenotes => com.skplanet.cask.container.service.SimpleServiceAdapter
+(4/22) /servicelist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(5/22) /testdefaultbean => com.skplanet.cask.container.service.SimpleServiceAdapter
+(6/22) /version => com.skplanet.cask.container.service.SimpleServiceAdapter
+(7/22) com.skplanet.cask.container.service.Process => com.skplanet.cask.container.service.Process
+(8/22) com.skplanet.cask.container.service.ProcessService => com.skplanet.cask.container.service.ProcessService
+(9/22) com.skplanet.cask.container.service.ReleaseNotes => com.skplanet.cask.container.service.ReleaseNotes
+(10/22) com.skplanet.cask.container.service.Version => com.skplanet.cask.container.service.Version
+(11/22) com.skplanet.cask.test.testcase.AddTestSimpleService => com.skplanet.cask.test.testcase.AddTestSimpleService
+(12/22) com.skplanet.cask.test.testcase.TestDefaultSimpleService => com.skplanet.cask.test.testcase.TestDefaultSimpleService
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testAddMBean
+- before add mbean
+(1/1) Cask:type=/testdefaultbean
+- after add mbean
+(1/2) Cask:type=/addtestmbean
+(2/2) Cask:type=/testdefaultbean
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testDbConnection
+- store db
+false
+- connection pools
+size = 2
+(caskRuntime) jdbc:mysql://localhost:3306/cask_test?autoReconnect=true : ConnectionPool[defaultAutoCommit=false; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=com.mysql.jdbc.Driver; maxActive=100; maxIdle=100; minIdle=10; initialSize=10; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=dlwhdals; url=jdbc:mysql://localhost:3306/cask_test?autoReconnect=true; username=lons; validationQuery=SELECT 1; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=SELECT 1; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+(testpool) null : ConnectionPool[defaultAutoCommit=false; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=null; maxActive=0; maxIdle=0; minIdle=0; initialSize=0; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=null; url=null; username=null; validationQuery=null; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=null; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+
+- connection pools : caskRuntime
+(caskRuntime) jdbc:mysql://localhost:3306/cask_test?autoReconnect=true : ConnectionPool[defaultAutoCommit=false; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=com.mysql.jdbc.Driver; maxActive=100; maxIdle=100; minIdle=10; initialSize=10; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=dlwhdals; url=jdbc:mysql://localhost:3306/cask_test?autoReconnect=true; username=lons; validationQuery=SELECT 1; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=SELECT 1; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testProperty
+- property
+(1/5) saveRuntimeIntoDb = false
+(2/5) runtimeDb = caskRuntime
+(3/5) testftp = 1.1.1.1
+(4/5) testhome = /test/home/
+(5/5) testfile = /test/text.txt
++++ Api & DB test
+++ com.skplanet.cask.test.testcase.ConfigReaderTest
++ testNothingDefault
+- read xml from : com/skplanet/cask/test/testcase
+user : com/skplanet/cask/test/testcase/nothing_configreader.xml
+default : com/skplanet/cask/test/testcase/default_configreader.xml
+- server info : 
+name = defaulthost, port = 1111, maxThreads = 111, contextPath = null, servicePath = null
+- service info list : 
+(1/2) url = /default, className = DefaultService.class, execType = batch, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+(2/2) url = /default2, className = DefaultService2.class, execType = request, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+++ com.skplanet.cask.test.testcase.ConfigReaderTest
++ testUserDefault
+- read xml from : com/skplanet/cask/test/testcase
+user : com/skplanet/cask/test/testcase/cask_configreader.xml
+default : com/skplanet/cask/test/testcase/default_configreader.xml
+- server info : 
+name = userhost, port = 2222, maxThreads = 512, contextPath = null, servicePath = null
+- service info list : 
+(1/3) url = /user, className = UserService.class, execType = request, mbeanClassName = com.skplanet.cask.monitor.SimpleServiceMonitor, method = post, inClass = null, outClass = null, sleepMSec = null
+(2/3) url = /default, className = DefaultService.class, execType = batch, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+(3/3) url = /default2, className = DefaultService2.class, execType = request, mbeanClassName = null, method = post, inClass = null, outClass = null, sleepMSec = null
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testStartupShutdown
+- server info : 
+name = localhost, port = 28888, maxThreads = 512, contextPath = cask, servicePath = /
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testGetServices
+- configured server info : 
+(1/5) url = /testdefaultbean, className = com.skplanet.cask.test.testcase.TestDefaultSimpleService, execType = request, mbeanClassName = com.skplanet.cask.test.testcase.TestDefaultMonitor, method = post, inClass = null, outClass = null, sleepMSec = null
+(2/5) url = /version, className = com.skplanet.cask.container.service.Version, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+(3/5) url = /releasenotes, className = com.skplanet.cask.container.service.ReleaseNotes, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+(4/5) url = /processlist, className = com.skplanet.cask.container.service.Process, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+(5/5) url = /servicelist, className = com.skplanet.cask.container.service.ProcessService, execType = request, mbeanClassName = null, method = get, inClass = null, outClass = null, sleepMSec = null
+- registered server info : 
+(1/20) /processlist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(2/20) /releasenotes => com.skplanet.cask.container.service.SimpleServiceAdapter
+(3/20) /servicelist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(4/20) /testdefaultbean => com.skplanet.cask.container.service.SimpleServiceAdapter
+(5/20) /version => com.skplanet.cask.container.service.SimpleServiceAdapter
+(6/20) com.skplanet.cask.container.service.Process => com.skplanet.cask.container.service.Process
+(7/20) com.skplanet.cask.container.service.ProcessService => com.skplanet.cask.container.service.ProcessService
+(8/20) com.skplanet.cask.container.service.ReleaseNotes => com.skplanet.cask.container.service.ReleaseNotes
+(9/20) com.skplanet.cask.container.service.Version => com.skplanet.cask.container.service.Version
+(10/20) com.skplanet.cask.test.testcase.TestDefaultSimpleService => com.skplanet.cask.test.testcase.TestDefaultSimpleService
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testAddService
+- registered server info : insert /addtestsimple
+(1/22) /addtestsimple => com.skplanet.cask.container.service.SimpleServiceAdapter
+(2/22) /processlist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(3/22) /releasenotes => com.skplanet.cask.container.service.SimpleServiceAdapter
+(4/22) /servicelist => com.skplanet.cask.container.service.SimpleServiceAdapter
+(5/22) /testdefaultbean => com.skplanet.cask.container.service.SimpleServiceAdapter
+(6/22) /version => com.skplanet.cask.container.service.SimpleServiceAdapter
+(7/22) com.skplanet.cask.container.service.Process => com.skplanet.cask.container.service.Process
+(8/22) com.skplanet.cask.container.service.ProcessService => com.skplanet.cask.container.service.ProcessService
+(9/22) com.skplanet.cask.container.service.ReleaseNotes => com.skplanet.cask.container.service.ReleaseNotes
+(10/22) com.skplanet.cask.container.service.Version => com.skplanet.cask.container.service.Version
+(11/22) com.skplanet.cask.test.testcase.AddTestSimpleService => com.skplanet.cask.test.testcase.AddTestSimpleService
+(12/22) com.skplanet.cask.test.testcase.TestDefaultSimpleService => com.skplanet.cask.test.testcase.TestDefaultSimpleService
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testAddMBean
+- before add mbean
+(1/1) Cask:type=/testdefaultbean
+- after add mbean
+(1/2) Cask:type=/addtestmbean
+(2/2) Cask:type=/testdefaultbean
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testDbConnection
+- store db
+true
+- connection pools
+size = 2
+(caskRuntime) jdbc:mysql://localhost:3306/cask_test?autoReconnect=true : ConnectionPool[defaultAutoCommit=false; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=com.mysql.jdbc.Driver; maxActive=100; maxIdle=100; minIdle=10; initialSize=10; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=dlwhdals; url=jdbc:mysql://localhost:3306/cask_test?autoReconnect=true; username=lons; validationQuery=SELECT 1; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=SELECT 1; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+(testpool) null : ConnectionPool[defaultAutoCommit=false; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=null; maxActive=0; maxIdle=0; minIdle=0; initialSize=0; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=null; url=null; username=null; validationQuery=null; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=null; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+
+- connection pools : caskRuntime
+(caskRuntime) jdbc:mysql://localhost:3306/cask_test?autoReconnect=true : ConnectionPool[defaultAutoCommit=false; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=com.mysql.jdbc.Driver; maxActive=100; maxIdle=100; minIdle=10; initialSize=10; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=dlwhdals; url=jdbc:mysql://localhost:3306/cask_test?autoReconnect=true; username=lons; validationQuery=SELECT 1; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=SELECT 1; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+
+++ com.skplanet.cask.test.testcase.ContainerTest
++ testProperty
+- property
+(1/5) saveRuntimeIntoDb = true
+(2/5) runtimeDb = caskRuntime
+(3/5) testftp = 1.1.1.1
+(4/5) testhome = /test/home/
+(5/5) testfile = /test/text.txt
+++ com.skplanet.cask.test.testcase.ApiTest
++ testDb
+- store db
+true
+- table : tb_server_runtime
+(1) (server_runtime_id = 1) (server = localhost) (port = 28888) (status = abnormal) 
+(2) (server_runtime_id = 2) (server = localhost) (port = 28888) (status = abnormal) 
+(3) (server_runtime_id = 3) (server = localhost) (port = 28888) (status = abnormal) 
+(4) (server_runtime_id = 4) (server = localhost) (port = 28888) (status = abnormal) 
+(5) (server_runtime_id = 5) (server = localhost) (port = 28888) (status = abnormal) 
+(6) (server_runtime_id = 6) (server = localhost) (port = 28888) (status = abnormal) 
+(7) (server_runtime_id = 7) (server = localhost) (port = 28888) (status = running) 
+- table : tb_service_runtime
+(1) (service_runtime_id = 1) (server_runtime_id = 1) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(2) (service_runtime_id = 2) (server_runtime_id = 1) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(3) (service_runtime_id = 3) (server_runtime_id = 1) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(4) (service_runtime_id = 4) (server_runtime_id = 1) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(5) (service_runtime_id = 5) (server_runtime_id = 1) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+(6) (service_runtime_id = 6) (server_runtime_id = 2) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(7) (service_runtime_id = 7) (server_runtime_id = 2) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(8) (service_runtime_id = 8) (server_runtime_id = 2) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(9) (service_runtime_id = 9) (server_runtime_id = 2) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(10) (service_runtime_id = 10) (server_runtime_id = 2) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+(11) (service_runtime_id = 11) (server_runtime_id = 3) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(12) (service_runtime_id = 12) (server_runtime_id = 3) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(13) (service_runtime_id = 13) (server_runtime_id = 3) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(14) (service_runtime_id = 14) (server_runtime_id = 3) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(15) (service_runtime_id = 15) (server_runtime_id = 3) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+(16) (service_runtime_id = 16) (server_runtime_id = 4) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(17) (service_runtime_id = 17) (server_runtime_id = 4) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(18) (service_runtime_id = 18) (server_runtime_id = 4) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(19) (service_runtime_id = 19) (server_runtime_id = 4) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(20) (service_runtime_id = 20) (server_runtime_id = 4) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+(21) (service_runtime_id = 21) (server_runtime_id = 5) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(22) (service_runtime_id = 22) (server_runtime_id = 5) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(23) (service_runtime_id = 23) (server_runtime_id = 5) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(24) (service_runtime_id = 24) (server_runtime_id = 5) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(25) (service_runtime_id = 25) (server_runtime_id = 5) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+(26) (service_runtime_id = 26) (server_runtime_id = 6) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(27) (service_runtime_id = 27) (server_runtime_id = 6) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(28) (service_runtime_id = 28) (server_runtime_id = 6) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(29) (service_runtime_id = 29) (server_runtime_id = 6) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(30) (service_runtime_id = 30) (server_runtime_id = 6) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+(31) (service_runtime_id = 31) (server_runtime_id = 7) (url = /testdefaultbean) (service_type = not supported) (service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService) (mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor) (exec_type = request) (status = open) 
+(32) (service_runtime_id = 32) (server_runtime_id = 7) (url = /version) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Version) (mbean_class = null) (exec_type = request) (status = open) 
+(33) (service_runtime_id = 33) (server_runtime_id = 7) (url = /releasenotes) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ReleaseNotes) (mbean_class = null) (exec_type = request) (status = open) 
+(34) (service_runtime_id = 34) (server_runtime_id = 7) (url = /processlist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.Process) (mbean_class = null) (exec_type = request) (status = open) 
+(35) (service_runtime_id = 35) (server_runtime_id = 7) (url = /servicelist) (service_type = not supported) (service_class = com.skplanet.cask.container.service.ProcessService) (mbean_class = null) (exec_type = request) (status = open) 
+++ com.skplanet.cask.test.testcase.ApiTest
++ testServer
+- get server info : 
+(1/1)  server_runtime_id = 8
+(1/1)  server = localhost
+(1/1)  port = 28888
+(1/1)  status = running
+- get server info : ?status=running
+(1/1)  server_runtime_id = 8
+(1/1)  server = localhost
+(1/1)  port = 28888
+(1/1)  status = running
+- get server info : ?status=end
+- get server info : ?status=all
+(1/8)  server_runtime_id = 7
+(1/8)  server = localhost
+(1/8)  port = 28888
+(1/8)  status = abnormal
+(2/8)  server_runtime_id = 6
+(2/8)  server = localhost
+(2/8)  port = 28888
+(2/8)  status = abnormal
+(3/8)  server_runtime_id = 5
+(3/8)  server = localhost
+(3/8)  port = 28888
+(3/8)  status = abnormal
+(4/8)  server_runtime_id = 4
+(4/8)  server = localhost
+(4/8)  port = 28888
+(4/8)  status = abnormal
+(5/8)  server_runtime_id = 3
+(5/8)  server = localhost
+(5/8)  port = 28888
+(5/8)  status = abnormal
+(6/8)  server_runtime_id = 2
+(6/8)  server = localhost
+(6/8)  port = 28888
+(6/8)  status = abnormal
+(7/8)  server_runtime_id = 1
+(7/8)  server = localhost
+(7/8)  port = 28888
+(7/8)  status = abnormal
+(8/8)  server_runtime_id = 8
+(8/8)  server = localhost
+(8/8)  port = 28888
+(8/8)  status = running
+- get server info : ?status=abnormal
+(1/7)  server_runtime_id = 7
+(1/7)  server = localhost
+(1/7)  port = 28888
+(1/7)  status = abnormal
+(2/7)  server_runtime_id = 6
+(2/7)  server = localhost
+(2/7)  port = 28888
+(2/7)  status = abnormal
+(3/7)  server_runtime_id = 5
+(3/7)  server = localhost
+(3/7)  port = 28888
+(3/7)  status = abnormal
+(4/7)  server_runtime_id = 4
+(4/7)  server = localhost
+(4/7)  port = 28888
+(4/7)  status = abnormal
+(5/7)  server_runtime_id = 3
+(5/7)  server = localhost
+(5/7)  port = 28888
+(5/7)  status = abnormal
+(6/7)  server_runtime_id = 2
+(6/7)  server = localhost
+(6/7)  port = 28888
+(6/7)  status = abnormal
+(7/7)  server_runtime_id = 1
+(7/7)  server = localhost
+(7/7)  port = 28888
+(7/7)  status = abnormal
+- get server info : ?server=localhost
+(1/1)  server_runtime_id = 8
+(1/1)  server = localhost
+(1/1)  port = 28888
+(1/1)  status = running
+- get server info : ?server=nothing
+- get server info : ?server=localhost&status=end
+- get server info : ?server=localhost&status=running
+(1/1)  server_runtime_id = 8
+(1/1)  server = localhost
+(1/1)  port = 28888
+(1/1)  status = running
+- get server info : ?id=8
+(1/1)  server_runtime_id = 8
+(1/1)  server = localhost
+(1/1)  port = 28888
+(1/1)  status = running
+++ com.skplanet.cask.test.testcase.ApiTest
++ testService
+- get service info : 
+(1/5)  service_runtime_id = 45
+(1/5)  url = /servicelist
+(1/5)  service_type = not supported
+(1/5)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/5)  mbean_class = null
+(1/5)  exec_type = request
+(1/5)  status = running
+(1/5)  server_runtime_id = 9
+(1/5)  server = localhost
+(1/5)  port = 28888
+(2/5)  service_runtime_id = 44
+(2/5)  url = /processlist
+(2/5)  service_type = not supported
+(2/5)  service_class = com.skplanet.cask.container.service.Process
+(2/5)  mbean_class = null
+(2/5)  exec_type = request
+(2/5)  status = running
+(2/5)  server_runtime_id = 9
+(2/5)  server = localhost
+(2/5)  port = 28888
+(3/5)  service_runtime_id = 43
+(3/5)  url = /releasenotes
+(3/5)  service_type = not supported
+(3/5)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(3/5)  mbean_class = null
+(3/5)  exec_type = request
+(3/5)  status = running
+(3/5)  server_runtime_id = 9
+(3/5)  server = localhost
+(3/5)  port = 28888
+(4/5)  service_runtime_id = 42
+(4/5)  url = /version
+(4/5)  service_type = not supported
+(4/5)  service_class = com.skplanet.cask.container.service.Version
+(4/5)  mbean_class = null
+(4/5)  exec_type = request
+(4/5)  status = running
+(4/5)  server_runtime_id = 9
+(4/5)  server = localhost
+(4/5)  port = 28888
+(5/5)  service_runtime_id = 41
+(5/5)  url = /testdefaultbean
+(5/5)  service_type = not supported
+(5/5)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(5/5)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(5/5)  exec_type = request
+(5/5)  status = running
+(5/5)  server_runtime_id = 9
+(5/5)  server = localhost
+(5/5)  port = 28888
+- get service info : ?status=running
+(1/5)  service_runtime_id = 45
+(1/5)  url = /servicelist
+(1/5)  service_type = not supported
+(1/5)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/5)  mbean_class = null
+(1/5)  exec_type = request
+(1/5)  status = running
+(1/5)  server_runtime_id = 9
+(1/5)  server = localhost
+(1/5)  port = 28888
+(2/5)  service_runtime_id = 44
+(2/5)  url = /processlist
+(2/5)  service_type = not supported
+(2/5)  service_class = com.skplanet.cask.container.service.Process
+(2/5)  mbean_class = null
+(2/5)  exec_type = request
+(2/5)  status = running
+(2/5)  server_runtime_id = 9
+(2/5)  server = localhost
+(2/5)  port = 28888
+(3/5)  service_runtime_id = 43
+(3/5)  url = /releasenotes
+(3/5)  service_type = not supported
+(3/5)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(3/5)  mbean_class = null
+(3/5)  exec_type = request
+(3/5)  status = running
+(3/5)  server_runtime_id = 9
+(3/5)  server = localhost
+(3/5)  port = 28888
+(4/5)  service_runtime_id = 42
+(4/5)  url = /version
+(4/5)  service_type = not supported
+(4/5)  service_class = com.skplanet.cask.container.service.Version
+(4/5)  mbean_class = null
+(4/5)  exec_type = request
+(4/5)  status = running
+(4/5)  server_runtime_id = 9
+(4/5)  server = localhost
+(4/5)  port = 28888
+(5/5)  service_runtime_id = 41
+(5/5)  url = /testdefaultbean
+(5/5)  service_type = not supported
+(5/5)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(5/5)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(5/5)  exec_type = request
+(5/5)  status = running
+(5/5)  server_runtime_id = 9
+(5/5)  server = localhost
+(5/5)  port = 28888
+- get service info : ?status=end
+- get service info : ?status=all
+(1/45)  service_runtime_id = 45
+(1/45)  url = /servicelist
+(1/45)  service_type = not supported
+(1/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/45)  mbean_class = null
+(1/45)  exec_type = request
+(1/45)  status = running
+(1/45)  server_runtime_id = 9
+(1/45)  server = localhost
+(1/45)  port = 28888
+(2/45)  service_runtime_id = 44
+(2/45)  url = /processlist
+(2/45)  service_type = not supported
+(2/45)  service_class = com.skplanet.cask.container.service.Process
+(2/45)  mbean_class = null
+(2/45)  exec_type = request
+(2/45)  status = running
+(2/45)  server_runtime_id = 9
+(2/45)  server = localhost
+(2/45)  port = 28888
+(3/45)  service_runtime_id = 43
+(3/45)  url = /releasenotes
+(3/45)  service_type = not supported
+(3/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(3/45)  mbean_class = null
+(3/45)  exec_type = request
+(3/45)  status = running
+(3/45)  server_runtime_id = 9
+(3/45)  server = localhost
+(3/45)  port = 28888
+(4/45)  service_runtime_id = 42
+(4/45)  url = /version
+(4/45)  service_type = not supported
+(4/45)  service_class = com.skplanet.cask.container.service.Version
+(4/45)  mbean_class = null
+(4/45)  exec_type = request
+(4/45)  status = running
+(4/45)  server_runtime_id = 9
+(4/45)  server = localhost
+(4/45)  port = 28888
+(5/45)  service_runtime_id = 41
+(5/45)  url = /testdefaultbean
+(5/45)  service_type = not supported
+(5/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(5/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(5/45)  exec_type = request
+(5/45)  status = running
+(5/45)  server_runtime_id = 9
+(5/45)  server = localhost
+(5/45)  port = 28888
+(6/45)  service_runtime_id = 40
+(6/45)  url = /servicelist
+(6/45)  service_type = not supported
+(6/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(6/45)  mbean_class = null
+(6/45)  exec_type = request
+(6/45)  status = abnormal
+(6/45)  server_runtime_id = 8
+(6/45)  server = localhost
+(6/45)  port = 28888
+(7/45)  service_runtime_id = 39
+(7/45)  url = /processlist
+(7/45)  service_type = not supported
+(7/45)  service_class = com.skplanet.cask.container.service.Process
+(7/45)  mbean_class = null
+(7/45)  exec_type = request
+(7/45)  status = abnormal
+(7/45)  server_runtime_id = 8
+(7/45)  server = localhost
+(7/45)  port = 28888
+(8/45)  service_runtime_id = 38
+(8/45)  url = /releasenotes
+(8/45)  service_type = not supported
+(8/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(8/45)  mbean_class = null
+(8/45)  exec_type = request
+(8/45)  status = abnormal
+(8/45)  server_runtime_id = 8
+(8/45)  server = localhost
+(8/45)  port = 28888
+(9/45)  service_runtime_id = 37
+(9/45)  url = /version
+(9/45)  service_type = not supported
+(9/45)  service_class = com.skplanet.cask.container.service.Version
+(9/45)  mbean_class = null
+(9/45)  exec_type = request
+(9/45)  status = abnormal
+(9/45)  server_runtime_id = 8
+(9/45)  server = localhost
+(9/45)  port = 28888
+(10/45)  service_runtime_id = 36
+(10/45)  url = /testdefaultbean
+(10/45)  service_type = not supported
+(10/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(10/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(10/45)  exec_type = request
+(10/45)  status = abnormal
+(10/45)  server_runtime_id = 8
+(10/45)  server = localhost
+(10/45)  port = 28888
+(11/45)  service_runtime_id = 35
+(11/45)  url = /servicelist
+(11/45)  service_type = not supported
+(11/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(11/45)  mbean_class = null
+(11/45)  exec_type = request
+(11/45)  status = abnormal
+(11/45)  server_runtime_id = 7
+(11/45)  server = localhost
+(11/45)  port = 28888
+(12/45)  service_runtime_id = 34
+(12/45)  url = /processlist
+(12/45)  service_type = not supported
+(12/45)  service_class = com.skplanet.cask.container.service.Process
+(12/45)  mbean_class = null
+(12/45)  exec_type = request
+(12/45)  status = abnormal
+(12/45)  server_runtime_id = 7
+(12/45)  server = localhost
+(12/45)  port = 28888
+(13/45)  service_runtime_id = 33
+(13/45)  url = /releasenotes
+(13/45)  service_type = not supported
+(13/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(13/45)  mbean_class = null
+(13/45)  exec_type = request
+(13/45)  status = abnormal
+(13/45)  server_runtime_id = 7
+(13/45)  server = localhost
+(13/45)  port = 28888
+(14/45)  service_runtime_id = 32
+(14/45)  url = /version
+(14/45)  service_type = not supported
+(14/45)  service_class = com.skplanet.cask.container.service.Version
+(14/45)  mbean_class = null
+(14/45)  exec_type = request
+(14/45)  status = abnormal
+(14/45)  server_runtime_id = 7
+(14/45)  server = localhost
+(14/45)  port = 28888
+(15/45)  service_runtime_id = 31
+(15/45)  url = /testdefaultbean
+(15/45)  service_type = not supported
+(15/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(15/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(15/45)  exec_type = request
+(15/45)  status = abnormal
+(15/45)  server_runtime_id = 7
+(15/45)  server = localhost
+(15/45)  port = 28888
+(16/45)  service_runtime_id = 30
+(16/45)  url = /servicelist
+(16/45)  service_type = not supported
+(16/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(16/45)  mbean_class = null
+(16/45)  exec_type = request
+(16/45)  status = abnormal
+(16/45)  server_runtime_id = 6
+(16/45)  server = localhost
+(16/45)  port = 28888
+(17/45)  service_runtime_id = 29
+(17/45)  url = /processlist
+(17/45)  service_type = not supported
+(17/45)  service_class = com.skplanet.cask.container.service.Process
+(17/45)  mbean_class = null
+(17/45)  exec_type = request
+(17/45)  status = abnormal
+(17/45)  server_runtime_id = 6
+(17/45)  server = localhost
+(17/45)  port = 28888
+(18/45)  service_runtime_id = 28
+(18/45)  url = /releasenotes
+(18/45)  service_type = not supported
+(18/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(18/45)  mbean_class = null
+(18/45)  exec_type = request
+(18/45)  status = abnormal
+(18/45)  server_runtime_id = 6
+(18/45)  server = localhost
+(18/45)  port = 28888
+(19/45)  service_runtime_id = 27
+(19/45)  url = /version
+(19/45)  service_type = not supported
+(19/45)  service_class = com.skplanet.cask.container.service.Version
+(19/45)  mbean_class = null
+(19/45)  exec_type = request
+(19/45)  status = abnormal
+(19/45)  server_runtime_id = 6
+(19/45)  server = localhost
+(19/45)  port = 28888
+(20/45)  service_runtime_id = 26
+(20/45)  url = /testdefaultbean
+(20/45)  service_type = not supported
+(20/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(20/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(20/45)  exec_type = request
+(20/45)  status = abnormal
+(20/45)  server_runtime_id = 6
+(20/45)  server = localhost
+(20/45)  port = 28888
+(21/45)  service_runtime_id = 25
+(21/45)  url = /servicelist
+(21/45)  service_type = not supported
+(21/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(21/45)  mbean_class = null
+(21/45)  exec_type = request
+(21/45)  status = abnormal
+(21/45)  server_runtime_id = 5
+(21/45)  server = localhost
+(21/45)  port = 28888
+(22/45)  service_runtime_id = 24
+(22/45)  url = /processlist
+(22/45)  service_type = not supported
+(22/45)  service_class = com.skplanet.cask.container.service.Process
+(22/45)  mbean_class = null
+(22/45)  exec_type = request
+(22/45)  status = abnormal
+(22/45)  server_runtime_id = 5
+(22/45)  server = localhost
+(22/45)  port = 28888
+(23/45)  service_runtime_id = 23
+(23/45)  url = /releasenotes
+(23/45)  service_type = not supported
+(23/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(23/45)  mbean_class = null
+(23/45)  exec_type = request
+(23/45)  status = abnormal
+(23/45)  server_runtime_id = 5
+(23/45)  server = localhost
+(23/45)  port = 28888
+(24/45)  service_runtime_id = 22
+(24/45)  url = /version
+(24/45)  service_type = not supported
+(24/45)  service_class = com.skplanet.cask.container.service.Version
+(24/45)  mbean_class = null
+(24/45)  exec_type = request
+(24/45)  status = abnormal
+(24/45)  server_runtime_id = 5
+(24/45)  server = localhost
+(24/45)  port = 28888
+(25/45)  service_runtime_id = 21
+(25/45)  url = /testdefaultbean
+(25/45)  service_type = not supported
+(25/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(25/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(25/45)  exec_type = request
+(25/45)  status = abnormal
+(25/45)  server_runtime_id = 5
+(25/45)  server = localhost
+(25/45)  port = 28888
+(26/45)  service_runtime_id = 20
+(26/45)  url = /servicelist
+(26/45)  service_type = not supported
+(26/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(26/45)  mbean_class = null
+(26/45)  exec_type = request
+(26/45)  status = abnormal
+(26/45)  server_runtime_id = 4
+(26/45)  server = localhost
+(26/45)  port = 28888
+(27/45)  service_runtime_id = 19
+(27/45)  url = /processlist
+(27/45)  service_type = not supported
+(27/45)  service_class = com.skplanet.cask.container.service.Process
+(27/45)  mbean_class = null
+(27/45)  exec_type = request
+(27/45)  status = abnormal
+(27/45)  server_runtime_id = 4
+(27/45)  server = localhost
+(27/45)  port = 28888
+(28/45)  service_runtime_id = 18
+(28/45)  url = /releasenotes
+(28/45)  service_type = not supported
+(28/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(28/45)  mbean_class = null
+(28/45)  exec_type = request
+(28/45)  status = abnormal
+(28/45)  server_runtime_id = 4
+(28/45)  server = localhost
+(28/45)  port = 28888
+(29/45)  service_runtime_id = 17
+(29/45)  url = /version
+(29/45)  service_type = not supported
+(29/45)  service_class = com.skplanet.cask.container.service.Version
+(29/45)  mbean_class = null
+(29/45)  exec_type = request
+(29/45)  status = abnormal
+(29/45)  server_runtime_id = 4
+(29/45)  server = localhost
+(29/45)  port = 28888
+(30/45)  service_runtime_id = 16
+(30/45)  url = /testdefaultbean
+(30/45)  service_type = not supported
+(30/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(30/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(30/45)  exec_type = request
+(30/45)  status = abnormal
+(30/45)  server_runtime_id = 4
+(30/45)  server = localhost
+(30/45)  port = 28888
+(31/45)  service_runtime_id = 15
+(31/45)  url = /servicelist
+(31/45)  service_type = not supported
+(31/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(31/45)  mbean_class = null
+(31/45)  exec_type = request
+(31/45)  status = abnormal
+(31/45)  server_runtime_id = 3
+(31/45)  server = localhost
+(31/45)  port = 28888
+(32/45)  service_runtime_id = 14
+(32/45)  url = /processlist
+(32/45)  service_type = not supported
+(32/45)  service_class = com.skplanet.cask.container.service.Process
+(32/45)  mbean_class = null
+(32/45)  exec_type = request
+(32/45)  status = abnormal
+(32/45)  server_runtime_id = 3
+(32/45)  server = localhost
+(32/45)  port = 28888
+(33/45)  service_runtime_id = 13
+(33/45)  url = /releasenotes
+(33/45)  service_type = not supported
+(33/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(33/45)  mbean_class = null
+(33/45)  exec_type = request
+(33/45)  status = abnormal
+(33/45)  server_runtime_id = 3
+(33/45)  server = localhost
+(33/45)  port = 28888
+(34/45)  service_runtime_id = 12
+(34/45)  url = /version
+(34/45)  service_type = not supported
+(34/45)  service_class = com.skplanet.cask.container.service.Version
+(34/45)  mbean_class = null
+(34/45)  exec_type = request
+(34/45)  status = abnormal
+(34/45)  server_runtime_id = 3
+(34/45)  server = localhost
+(34/45)  port = 28888
+(35/45)  service_runtime_id = 11
+(35/45)  url = /testdefaultbean
+(35/45)  service_type = not supported
+(35/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(35/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(35/45)  exec_type = request
+(35/45)  status = abnormal
+(35/45)  server_runtime_id = 3
+(35/45)  server = localhost
+(35/45)  port = 28888
+(36/45)  service_runtime_id = 10
+(36/45)  url = /servicelist
+(36/45)  service_type = not supported
+(36/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(36/45)  mbean_class = null
+(36/45)  exec_type = request
+(36/45)  status = abnormal
+(36/45)  server_runtime_id = 2
+(36/45)  server = localhost
+(36/45)  port = 28888
+(37/45)  service_runtime_id = 9
+(37/45)  url = /processlist
+(37/45)  service_type = not supported
+(37/45)  service_class = com.skplanet.cask.container.service.Process
+(37/45)  mbean_class = null
+(37/45)  exec_type = request
+(37/45)  status = abnormal
+(37/45)  server_runtime_id = 2
+(37/45)  server = localhost
+(37/45)  port = 28888
+(38/45)  service_runtime_id = 8
+(38/45)  url = /releasenotes
+(38/45)  service_type = not supported
+(38/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(38/45)  mbean_class = null
+(38/45)  exec_type = request
+(38/45)  status = abnormal
+(38/45)  server_runtime_id = 2
+(38/45)  server = localhost
+(38/45)  port = 28888
+(39/45)  service_runtime_id = 7
+(39/45)  url = /version
+(39/45)  service_type = not supported
+(39/45)  service_class = com.skplanet.cask.container.service.Version
+(39/45)  mbean_class = null
+(39/45)  exec_type = request
+(39/45)  status = abnormal
+(39/45)  server_runtime_id = 2
+(39/45)  server = localhost
+(39/45)  port = 28888
+(40/45)  service_runtime_id = 6
+(40/45)  url = /testdefaultbean
+(40/45)  service_type = not supported
+(40/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(40/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(40/45)  exec_type = request
+(40/45)  status = abnormal
+(40/45)  server_runtime_id = 2
+(40/45)  server = localhost
+(40/45)  port = 28888
+(41/45)  service_runtime_id = 5
+(41/45)  url = /servicelist
+(41/45)  service_type = not supported
+(41/45)  service_class = com.skplanet.cask.container.service.ProcessService
+(41/45)  mbean_class = null
+(41/45)  exec_type = request
+(41/45)  status = abnormal
+(41/45)  server_runtime_id = 1
+(41/45)  server = localhost
+(41/45)  port = 28888
+(42/45)  service_runtime_id = 4
+(42/45)  url = /processlist
+(42/45)  service_type = not supported
+(42/45)  service_class = com.skplanet.cask.container.service.Process
+(42/45)  mbean_class = null
+(42/45)  exec_type = request
+(42/45)  status = abnormal
+(42/45)  server_runtime_id = 1
+(42/45)  server = localhost
+(42/45)  port = 28888
+(43/45)  service_runtime_id = 3
+(43/45)  url = /releasenotes
+(43/45)  service_type = not supported
+(43/45)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(43/45)  mbean_class = null
+(43/45)  exec_type = request
+(43/45)  status = abnormal
+(43/45)  server_runtime_id = 1
+(43/45)  server = localhost
+(43/45)  port = 28888
+(44/45)  service_runtime_id = 2
+(44/45)  url = /version
+(44/45)  service_type = not supported
+(44/45)  service_class = com.skplanet.cask.container.service.Version
+(44/45)  mbean_class = null
+(44/45)  exec_type = request
+(44/45)  status = abnormal
+(44/45)  server_runtime_id = 1
+(44/45)  server = localhost
+(44/45)  port = 28888
+(45/45)  service_runtime_id = 1
+(45/45)  url = /testdefaultbean
+(45/45)  service_type = not supported
+(45/45)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(45/45)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(45/45)  exec_type = request
+(45/45)  status = abnormal
+(45/45)  server_runtime_id = 1
+(45/45)  server = localhost
+(45/45)  port = 28888
+- get service info : ?status=abnormal
+(1/40)  service_runtime_id = 40
+(1/40)  url = /servicelist
+(1/40)  service_type = not supported
+(1/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/40)  mbean_class = null
+(1/40)  exec_type = request
+(1/40)  status = abnormal
+(1/40)  server_runtime_id = 8
+(1/40)  server = localhost
+(1/40)  port = 28888
+(2/40)  service_runtime_id = 39
+(2/40)  url = /processlist
+(2/40)  service_type = not supported
+(2/40)  service_class = com.skplanet.cask.container.service.Process
+(2/40)  mbean_class = null
+(2/40)  exec_type = request
+(2/40)  status = abnormal
+(2/40)  server_runtime_id = 8
+(2/40)  server = localhost
+(2/40)  port = 28888
+(3/40)  service_runtime_id = 38
+(3/40)  url = /releasenotes
+(3/40)  service_type = not supported
+(3/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(3/40)  mbean_class = null
+(3/40)  exec_type = request
+(3/40)  status = abnormal
+(3/40)  server_runtime_id = 8
+(3/40)  server = localhost
+(3/40)  port = 28888
+(4/40)  service_runtime_id = 37
+(4/40)  url = /version
+(4/40)  service_type = not supported
+(4/40)  service_class = com.skplanet.cask.container.service.Version
+(4/40)  mbean_class = null
+(4/40)  exec_type = request
+(4/40)  status = abnormal
+(4/40)  server_runtime_id = 8
+(4/40)  server = localhost
+(4/40)  port = 28888
+(5/40)  service_runtime_id = 36
+(5/40)  url = /testdefaultbean
+(5/40)  service_type = not supported
+(5/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(5/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(5/40)  exec_type = request
+(5/40)  status = abnormal
+(5/40)  server_runtime_id = 8
+(5/40)  server = localhost
+(5/40)  port = 28888
+(6/40)  service_runtime_id = 35
+(6/40)  url = /servicelist
+(6/40)  service_type = not supported
+(6/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(6/40)  mbean_class = null
+(6/40)  exec_type = request
+(6/40)  status = abnormal
+(6/40)  server_runtime_id = 7
+(6/40)  server = localhost
+(6/40)  port = 28888
+(7/40)  service_runtime_id = 34
+(7/40)  url = /processlist
+(7/40)  service_type = not supported
+(7/40)  service_class = com.skplanet.cask.container.service.Process
+(7/40)  mbean_class = null
+(7/40)  exec_type = request
+(7/40)  status = abnormal
+(7/40)  server_runtime_id = 7
+(7/40)  server = localhost
+(7/40)  port = 28888
+(8/40)  service_runtime_id = 33
+(8/40)  url = /releasenotes
+(8/40)  service_type = not supported
+(8/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(8/40)  mbean_class = null
+(8/40)  exec_type = request
+(8/40)  status = abnormal
+(8/40)  server_runtime_id = 7
+(8/40)  server = localhost
+(8/40)  port = 28888
+(9/40)  service_runtime_id = 32
+(9/40)  url = /version
+(9/40)  service_type = not supported
+(9/40)  service_class = com.skplanet.cask.container.service.Version
+(9/40)  mbean_class = null
+(9/40)  exec_type = request
+(9/40)  status = abnormal
+(9/40)  server_runtime_id = 7
+(9/40)  server = localhost
+(9/40)  port = 28888
+(10/40)  service_runtime_id = 31
+(10/40)  url = /testdefaultbean
+(10/40)  service_type = not supported
+(10/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(10/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(10/40)  exec_type = request
+(10/40)  status = abnormal
+(10/40)  server_runtime_id = 7
+(10/40)  server = localhost
+(10/40)  port = 28888
+(11/40)  service_runtime_id = 30
+(11/40)  url = /servicelist
+(11/40)  service_type = not supported
+(11/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(11/40)  mbean_class = null
+(11/40)  exec_type = request
+(11/40)  status = abnormal
+(11/40)  server_runtime_id = 6
+(11/40)  server = localhost
+(11/40)  port = 28888
+(12/40)  service_runtime_id = 29
+(12/40)  url = /processlist
+(12/40)  service_type = not supported
+(12/40)  service_class = com.skplanet.cask.container.service.Process
+(12/40)  mbean_class = null
+(12/40)  exec_type = request
+(12/40)  status = abnormal
+(12/40)  server_runtime_id = 6
+(12/40)  server = localhost
+(12/40)  port = 28888
+(13/40)  service_runtime_id = 28
+(13/40)  url = /releasenotes
+(13/40)  service_type = not supported
+(13/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(13/40)  mbean_class = null
+(13/40)  exec_type = request
+(13/40)  status = abnormal
+(13/40)  server_runtime_id = 6
+(13/40)  server = localhost
+(13/40)  port = 28888
+(14/40)  service_runtime_id = 27
+(14/40)  url = /version
+(14/40)  service_type = not supported
+(14/40)  service_class = com.skplanet.cask.container.service.Version
+(14/40)  mbean_class = null
+(14/40)  exec_type = request
+(14/40)  status = abnormal
+(14/40)  server_runtime_id = 6
+(14/40)  server = localhost
+(14/40)  port = 28888
+(15/40)  service_runtime_id = 26
+(15/40)  url = /testdefaultbean
+(15/40)  service_type = not supported
+(15/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(15/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(15/40)  exec_type = request
+(15/40)  status = abnormal
+(15/40)  server_runtime_id = 6
+(15/40)  server = localhost
+(15/40)  port = 28888
+(16/40)  service_runtime_id = 25
+(16/40)  url = /servicelist
+(16/40)  service_type = not supported
+(16/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(16/40)  mbean_class = null
+(16/40)  exec_type = request
+(16/40)  status = abnormal
+(16/40)  server_runtime_id = 5
+(16/40)  server = localhost
+(16/40)  port = 28888
+(17/40)  service_runtime_id = 24
+(17/40)  url = /processlist
+(17/40)  service_type = not supported
+(17/40)  service_class = com.skplanet.cask.container.service.Process
+(17/40)  mbean_class = null
+(17/40)  exec_type = request
+(17/40)  status = abnormal
+(17/40)  server_runtime_id = 5
+(17/40)  server = localhost
+(17/40)  port = 28888
+(18/40)  service_runtime_id = 23
+(18/40)  url = /releasenotes
+(18/40)  service_type = not supported
+(18/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(18/40)  mbean_class = null
+(18/40)  exec_type = request
+(18/40)  status = abnormal
+(18/40)  server_runtime_id = 5
+(18/40)  server = localhost
+(18/40)  port = 28888
+(19/40)  service_runtime_id = 22
+(19/40)  url = /version
+(19/40)  service_type = not supported
+(19/40)  service_class = com.skplanet.cask.container.service.Version
+(19/40)  mbean_class = null
+(19/40)  exec_type = request
+(19/40)  status = abnormal
+(19/40)  server_runtime_id = 5
+(19/40)  server = localhost
+(19/40)  port = 28888
+(20/40)  service_runtime_id = 21
+(20/40)  url = /testdefaultbean
+(20/40)  service_type = not supported
+(20/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(20/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(20/40)  exec_type = request
+(20/40)  status = abnormal
+(20/40)  server_runtime_id = 5
+(20/40)  server = localhost
+(20/40)  port = 28888
+(21/40)  service_runtime_id = 20
+(21/40)  url = /servicelist
+(21/40)  service_type = not supported
+(21/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(21/40)  mbean_class = null
+(21/40)  exec_type = request
+(21/40)  status = abnormal
+(21/40)  server_runtime_id = 4
+(21/40)  server = localhost
+(21/40)  port = 28888
+(22/40)  service_runtime_id = 19
+(22/40)  url = /processlist
+(22/40)  service_type = not supported
+(22/40)  service_class = com.skplanet.cask.container.service.Process
+(22/40)  mbean_class = null
+(22/40)  exec_type = request
+(22/40)  status = abnormal
+(22/40)  server_runtime_id = 4
+(22/40)  server = localhost
+(22/40)  port = 28888
+(23/40)  service_runtime_id = 18
+(23/40)  url = /releasenotes
+(23/40)  service_type = not supported
+(23/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(23/40)  mbean_class = null
+(23/40)  exec_type = request
+(23/40)  status = abnormal
+(23/40)  server_runtime_id = 4
+(23/40)  server = localhost
+(23/40)  port = 28888
+(24/40)  service_runtime_id = 17
+(24/40)  url = /version
+(24/40)  service_type = not supported
+(24/40)  service_class = com.skplanet.cask.container.service.Version
+(24/40)  mbean_class = null
+(24/40)  exec_type = request
+(24/40)  status = abnormal
+(24/40)  server_runtime_id = 4
+(24/40)  server = localhost
+(24/40)  port = 28888
+(25/40)  service_runtime_id = 16
+(25/40)  url = /testdefaultbean
+(25/40)  service_type = not supported
+(25/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(25/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(25/40)  exec_type = request
+(25/40)  status = abnormal
+(25/40)  server_runtime_id = 4
+(25/40)  server = localhost
+(25/40)  port = 28888
+(26/40)  service_runtime_id = 15
+(26/40)  url = /servicelist
+(26/40)  service_type = not supported
+(26/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(26/40)  mbean_class = null
+(26/40)  exec_type = request
+(26/40)  status = abnormal
+(26/40)  server_runtime_id = 3
+(26/40)  server = localhost
+(26/40)  port = 28888
+(27/40)  service_runtime_id = 14
+(27/40)  url = /processlist
+(27/40)  service_type = not supported
+(27/40)  service_class = com.skplanet.cask.container.service.Process
+(27/40)  mbean_class = null
+(27/40)  exec_type = request
+(27/40)  status = abnormal
+(27/40)  server_runtime_id = 3
+(27/40)  server = localhost
+(27/40)  port = 28888
+(28/40)  service_runtime_id = 13
+(28/40)  url = /releasenotes
+(28/40)  service_type = not supported
+(28/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(28/40)  mbean_class = null
+(28/40)  exec_type = request
+(28/40)  status = abnormal
+(28/40)  server_runtime_id = 3
+(28/40)  server = localhost
+(28/40)  port = 28888
+(29/40)  service_runtime_id = 12
+(29/40)  url = /version
+(29/40)  service_type = not supported
+(29/40)  service_class = com.skplanet.cask.container.service.Version
+(29/40)  mbean_class = null
+(29/40)  exec_type = request
+(29/40)  status = abnormal
+(29/40)  server_runtime_id = 3
+(29/40)  server = localhost
+(29/40)  port = 28888
+(30/40)  service_runtime_id = 11
+(30/40)  url = /testdefaultbean
+(30/40)  service_type = not supported
+(30/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(30/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(30/40)  exec_type = request
+(30/40)  status = abnormal
+(30/40)  server_runtime_id = 3
+(30/40)  server = localhost
+(30/40)  port = 28888
+(31/40)  service_runtime_id = 10
+(31/40)  url = /servicelist
+(31/40)  service_type = not supported
+(31/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(31/40)  mbean_class = null
+(31/40)  exec_type = request
+(31/40)  status = abnormal
+(31/40)  server_runtime_id = 2
+(31/40)  server = localhost
+(31/40)  port = 28888
+(32/40)  service_runtime_id = 9
+(32/40)  url = /processlist
+(32/40)  service_type = not supported
+(32/40)  service_class = com.skplanet.cask.container.service.Process
+(32/40)  mbean_class = null
+(32/40)  exec_type = request
+(32/40)  status = abnormal
+(32/40)  server_runtime_id = 2
+(32/40)  server = localhost
+(32/40)  port = 28888
+(33/40)  service_runtime_id = 8
+(33/40)  url = /releasenotes
+(33/40)  service_type = not supported
+(33/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(33/40)  mbean_class = null
+(33/40)  exec_type = request
+(33/40)  status = abnormal
+(33/40)  server_runtime_id = 2
+(33/40)  server = localhost
+(33/40)  port = 28888
+(34/40)  service_runtime_id = 7
+(34/40)  url = /version
+(34/40)  service_type = not supported
+(34/40)  service_class = com.skplanet.cask.container.service.Version
+(34/40)  mbean_class = null
+(34/40)  exec_type = request
+(34/40)  status = abnormal
+(34/40)  server_runtime_id = 2
+(34/40)  server = localhost
+(34/40)  port = 28888
+(35/40)  service_runtime_id = 6
+(35/40)  url = /testdefaultbean
+(35/40)  service_type = not supported
+(35/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(35/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(35/40)  exec_type = request
+(35/40)  status = abnormal
+(35/40)  server_runtime_id = 2
+(35/40)  server = localhost
+(35/40)  port = 28888
+(36/40)  service_runtime_id = 5
+(36/40)  url = /servicelist
+(36/40)  service_type = not supported
+(36/40)  service_class = com.skplanet.cask.container.service.ProcessService
+(36/40)  mbean_class = null
+(36/40)  exec_type = request
+(36/40)  status = abnormal
+(36/40)  server_runtime_id = 1
+(36/40)  server = localhost
+(36/40)  port = 28888
+(37/40)  service_runtime_id = 4
+(37/40)  url = /processlist
+(37/40)  service_type = not supported
+(37/40)  service_class = com.skplanet.cask.container.service.Process
+(37/40)  mbean_class = null
+(37/40)  exec_type = request
+(37/40)  status = abnormal
+(37/40)  server_runtime_id = 1
+(37/40)  server = localhost
+(37/40)  port = 28888
+(38/40)  service_runtime_id = 3
+(38/40)  url = /releasenotes
+(38/40)  service_type = not supported
+(38/40)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(38/40)  mbean_class = null
+(38/40)  exec_type = request
+(38/40)  status = abnormal
+(38/40)  server_runtime_id = 1
+(38/40)  server = localhost
+(38/40)  port = 28888
+(39/40)  service_runtime_id = 2
+(39/40)  url = /version
+(39/40)  service_type = not supported
+(39/40)  service_class = com.skplanet.cask.container.service.Version
+(39/40)  mbean_class = null
+(39/40)  exec_type = request
+(39/40)  status = abnormal
+(39/40)  server_runtime_id = 1
+(39/40)  server = localhost
+(39/40)  port = 28888
+(40/40)  service_runtime_id = 1
+(40/40)  url = /testdefaultbean
+(40/40)  service_type = not supported
+(40/40)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(40/40)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(40/40)  exec_type = request
+(40/40)  status = abnormal
+(40/40)  server_runtime_id = 1
+(40/40)  server = localhost
+(40/40)  port = 28888
+- get service info : ?server=localhost
+(1/5)  service_runtime_id = 45
+(1/5)  url = /servicelist
+(1/5)  service_type = not supported
+(1/5)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/5)  mbean_class = null
+(1/5)  exec_type = request
+(1/5)  status = running
+(1/5)  server_runtime_id = 9
+(1/5)  server = localhost
+(1/5)  port = 28888
+(2/5)  service_runtime_id = 44
+(2/5)  url = /processlist
+(2/5)  service_type = not supported
+(2/5)  service_class = com.skplanet.cask.container.service.Process
+(2/5)  mbean_class = null
+(2/5)  exec_type = request
+(2/5)  status = running
+(2/5)  server_runtime_id = 9
+(2/5)  server = localhost
+(2/5)  port = 28888
+(3/5)  service_runtime_id = 43
+(3/5)  url = /releasenotes
+(3/5)  service_type = not supported
+(3/5)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(3/5)  mbean_class = null
+(3/5)  exec_type = request
+(3/5)  status = running
+(3/5)  server_runtime_id = 9
+(3/5)  server = localhost
+(3/5)  port = 28888
+(4/5)  service_runtime_id = 42
+(4/5)  url = /version
+(4/5)  service_type = not supported
+(4/5)  service_class = com.skplanet.cask.container.service.Version
+(4/5)  mbean_class = null
+(4/5)  exec_type = request
+(4/5)  status = running
+(4/5)  server_runtime_id = 9
+(4/5)  server = localhost
+(4/5)  port = 28888
+(5/5)  service_runtime_id = 41
+(5/5)  url = /testdefaultbean
+(5/5)  service_type = not supported
+(5/5)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(5/5)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(5/5)  exec_type = request
+(5/5)  status = running
+(5/5)  server_runtime_id = 9
+(5/5)  server = localhost
+(5/5)  port = 28888
+- get service info : ?server=nothing
+- get service info : ?server=localhost&status=end
+- get service info : ?server=localhost&status=running
+(1/5)  service_runtime_id = 45
+(1/5)  url = /servicelist
+(1/5)  service_type = not supported
+(1/5)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/5)  mbean_class = null
+(1/5)  exec_type = request
+(1/5)  status = running
+(1/5)  server_runtime_id = 9
+(1/5)  server = localhost
+(1/5)  port = 28888
+(2/5)  service_runtime_id = 44
+(2/5)  url = /processlist
+(2/5)  service_type = not supported
+(2/5)  service_class = com.skplanet.cask.container.service.Process
+(2/5)  mbean_class = null
+(2/5)  exec_type = request
+(2/5)  status = running
+(2/5)  server_runtime_id = 9
+(2/5)  server = localhost
+(2/5)  port = 28888
+(3/5)  service_runtime_id = 43
+(3/5)  url = /releasenotes
+(3/5)  service_type = not supported
+(3/5)  service_class = com.skplanet.cask.container.service.ReleaseNotes
+(3/5)  mbean_class = null
+(3/5)  exec_type = request
+(3/5)  status = running
+(3/5)  server_runtime_id = 9
+(3/5)  server = localhost
+(3/5)  port = 28888
+(4/5)  service_runtime_id = 42
+(4/5)  url = /version
+(4/5)  service_type = not supported
+(4/5)  service_class = com.skplanet.cask.container.service.Version
+(4/5)  mbean_class = null
+(4/5)  exec_type = request
+(4/5)  status = running
+(4/5)  server_runtime_id = 9
+(4/5)  server = localhost
+(4/5)  port = 28888
+(5/5)  service_runtime_id = 41
+(5/5)  url = /testdefaultbean
+(5/5)  service_type = not supported
+(5/5)  service_class = com.skplanet.cask.test.testcase.TestDefaultSimpleService
+(5/5)  mbean_class = com.skplanet.cask.test.testcase.TestDefaultMonitor
+(5/5)  exec_type = request
+(5/5)  status = running
+(5/5)  server_runtime_id = 9
+(5/5)  server = localhost
+(5/5)  port = 28888
+- get service info : ?id=45
+(1/1)  service_runtime_id = 45
+(1/1)  url = /servicelist
+(1/1)  service_type = not supported
+(1/1)  service_class = com.skplanet.cask.container.service.ProcessService
+(1/1)  mbean_class = null
+(1/1)  exec_type = request
+(1/1)  status = running
+(1/1)  server_runtime_id = 9
+(1/1)  server = localhost
+(1/1)  port = 28888

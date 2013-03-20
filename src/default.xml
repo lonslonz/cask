@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<configuration>
+    <server name="localhost" port="8080" maxThreads="512" contextPath="cask" servicePath="/"/>
+    
+    <services>
+        <service url="/version" class="com.skplanet.cask.container.service.Version" 
+                 service-type="simple" exec="request" method="get" />
+        
+        <service url="/releasenotes" class="com.skplanet.cask.container.service.ReleaseNotes" 
+                 service-type="simple" exec="request" method="get" />
+        
+        <service url="/processlist" class="com.skplanet.cask.container.service.Process" 
+                 service-type="simple" exec="request" method="get" />
+                 
+        <service url="/servicelist" class="com.skplanet.cask.container.service.ProcessService" 
+                 service-type="simple" exec="request" method="get" />
+    </services>
+</configuration>
