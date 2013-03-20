@@ -100,7 +100,7 @@
                <artifacts pattern="target/bin/[artifact]-[revision].[ext]"/>
         </ivy:publish>
     </target>
-
+<!--
     <property environment="env"></property>
 	<property name="findbugs.home" value="${env.FINDBUGS_HOME}"/>
 	 <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
@@ -112,46 +112,6 @@
 	      <class location="${classes.dir}" />
 	    </findbugs>
 	  </target>
-<!--  
-   <target name="junit" depends="compile-tests" description="run all unit tests">
-      <mkdir dir="${report.dir}"/>
-      <junit haltonfailure="false">
-         <jvmarg value="-Xms128m"/>
-         <jvmarg value="-Xmx128m"/>
-         <classpath>
-            <path refid="project.classpath"/>
-         </classpath>
-         <formatter type="xml"/>
-         <batchtest fork="yes" todir="${reports}">
-            <fileset dir="${test}/classes">
-                <include name="**/*Test*.class"/>
-            </fileset>
-         </batchtest>
-      </junit>
-  </target>
-
-  <target name="generate-reports" depends="junit" description="create JUnit test HTML reports">
-      <mkdir dir="${reports}"/>
-      <junitreport todir="${reports}">
-          <fileset dir="${reports}">
-              <include name="TEST-*.xml"/>
-          </fileset>
-          <report format="frames" todir="${reports}"/>
-      </junitreport>
-  </target>
 -->
-	<!--
-	<target name="doc" >
-		<javadoc packagenames="${packages}"
-		             sourcepath="${basedir}/${src.dir}"
-		             destdir="${build.javadocs}"
-		             author="true"
-		             version="true"
-		             windowtitle="${Name} API"
-		             doctitle="${Name}"
-		             bottom="Copyright ⓒ 2001 SomeMane. All Rights Reserved."
-		    />
-	</target>
-	-->
 </project>
 
