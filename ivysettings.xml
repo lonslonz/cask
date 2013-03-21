@@ -1,0 +1,28 @@
+<ivysettings>
+  <settings defaultResolver="my-chain"/>
+ <!-- <property name="github.repo.local" value="/home/lons/work/git/maven_repo/"/>  
+-->
+  <include url="${ivy.default.settings.dir}/ivysettings.xml"/>
+<!--
+  <include url="${ivy.default.settings.dir}/ivysettings-public.xml"/>
+  <include url="${ivy.default.settings.dir}/ivysettings-shared.xml"/>
+  <include url="${ivy.default.settings.dir}/ivysettings-local.xml"/>
+  <include url="${ivy.default.settings.dir}/ivysettings-main-chain.xml"/>
+  <include url="${ivy.default.settings.dir}/ivysettings-default-chain.xml"/>
+-->
+  <resolvers>
+    <filesystem name="github-repo-local">
+      <ivy pattern="${github.repo.local}/release/[organisation]/[module]/ivy-[revision].xml" />
+      <artifact pattern="${github.repo.local}/release/[organisation]/[module]/[type]s/[artifact]-[revision].[ext]" />
+    </filesystem>
+    <url name="github-repo">
+      <ivy pattern="https://github.com/lonslonz/maven_repo/raw/master/release/[organisation]/[module]/ivy-[revision].xml" />
+      <artifact pattern="https://github.com/lonslonz/maven_repo/raw/master/release/[organisation]/[module]/[type]s/[artifact]-[revision].[ext]" />
+    </url>
+
+    <chain name="my-chain" returnFirst="true">
+      <resolver ref="github-repo"/>
+      <resolver ref="default"/>
+    </chain>
+  </resolvers>
+</ivysettings>
