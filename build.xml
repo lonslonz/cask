@@ -6,7 +6,6 @@
 	<property name="testlib.dir" value="testlib"/>
 	<property name="bin.dir" value="bin"/>
 	<property name="src.dir" value="src"/>
-	<property name="scripts.dir" value="scripts"/>
 	<property name="temp.dir" value="temp"/>
 	<property name="logs.dir" value="logs"/>
 	<property name="dist.dir" value="target"/>
