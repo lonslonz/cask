@@ -58,9 +58,7 @@
 		<copy todir="${dist.dir}/${lib.dir}">
 			<fileset dir="${lib.dir}"/>
 		</copy>
-		<copy todir="${dist.dir}/${temp.dir}">
-			<fileset dir="${temp.dir}"/>
-		</copy>
+		<mkdir dir="${dist.dir}/${temp.dir}"/>
 		<copy todir="${dist.dir}/${logs.dir}">
 			<fileset dir="${logs.dir}"/>
 		</copy>
