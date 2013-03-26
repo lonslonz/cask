@@ -6,7 +6,6 @@
 	<property name="testlib.dir" value="testlib"/>
 	<property name="bin.dir" value="bin"/>
 	<property name="src.dir" value="src"/>
-	<property name="docs.dir" value="docs"/>
 	<property name="scripts.dir" value="scripts"/>
 	<property name="temp.dir" value="temp"/>
 	<property name="logs.dir" value="logs"/>
@@ -59,9 +58,6 @@
 		</copy>
 		<copy todir="${dist.dir}/${lib.dir}">
 			<fileset dir="${lib.dir}"/>
-		</copy>
-		<copy todir="${dist.dir}/${docs.dir}">
-			<fileset dir="${docs.dir}"/>
 		</copy>
 		<copy todir="${dist.dir}/${scripts.dir}">
 			<fileset dir="${scripts.dir}"/>
