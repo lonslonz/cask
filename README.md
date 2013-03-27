@@ -4,11 +4,11 @@
 ### What is it
 
 It's a java multi-threaded server container.
-서버로 동작하는 하나의 프로세스임.
-Http API를 제공하는 서버를 구현하기 용이하도록 구현되었음. 
 
-자신이 개발한 클래스를 간단한 설정을 통해 cask위에 띄울 수 있음. 
-http request를 받을 수 있도록 할 수 있으며, 요청이 올때 thread 하나가 이 클래스를 실행
+- 서버로 동작하는 하나의 프로세스임.
+- Http API를 제공하는 서버를 구현하기 용이하도록 구현되었음. 
+- 자신이 개발한 클래스를 간단한 설정을 통해 cask위에 띄울 수 있음. 
+- http request를 받을 수 있도록 할 수 있으며, 요청이 올때 thread 하나가 이 클래스를 실행
 
 ### Why not tomcat
 
