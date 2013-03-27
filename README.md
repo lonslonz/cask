@@ -65,16 +65,48 @@ cask 내부 구현은 tomcat embedded + spring 으로 되어 있음.
 
 # How to use
 
+- [tutorial - install & execute]()
+- [tutorial - setup for eclipse]
+- [tutorial - add services]
+
+### prepare
+
+##### linux
+- install ant, ivy. 
+ant :  
+
+##### eclipse 
+- install ant, ivy plugin
+
 ### download
 
-cask_build_template 를 svn에서 다운받아 사용하면 됨
-이는 ant + ivy 빌드 구성과 version관리를 위한 구성을 포함하고 있음
+[cask_build_template](https://github.com/lonslonz/cask_build)를 git 다운받아 사용하면 됨
+- [zip file](https://github.com/lonslonz/cask_build/archive/master.zip)
+
+ant + ivy 빌드 구성과 version관리를 위한 구성을 포함하고 있음
 
 ### install
 
+- ant resolve
+- ant 
+
+### configuration 
+
+
+
 ### execute
 
+- sh target/bin/startup.sh
+
 ### request api 
+
+- rest api client firefox plugin or chrome plugin
+-
+
+### stop
+
+- sh target/bin/stop.sh
+
 
 ### test
 
