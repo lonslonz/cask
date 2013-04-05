@@ -66,6 +66,6 @@ cask 내부 구현은 tomcat embedded + spring 으로 되어 있음.
 
 # How to use
 
-- [tutorial - install & execute](https://github.com/lonslonz/cask/wiki/Tutorial--:-install-&-execute)
-- [tutorial - eclipse project setting & debugging](https://github.com/lonslonz/cask/wiki/Tutorial-:-eclipse-project-setting-&-debugging)
-- [tutorial - add services]
+- [tutorial - install & execute](https://github.com/lonslonz/cask/wiki/Tutorial--:-install-&-execute-(Korean))
+- [tutorial - eclipse project setting & debugging](https://github.com/lonslonz/cask/wiki/Tutorial-:-eclipse-project-setting-&-debugging-(Korean))
+- [tutorial - add services](https://github.com/lonslonz/cask/wiki/Tutorial-:-add-your-services-(Korean))
