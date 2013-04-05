@@ -40,9 +40,9 @@ tomcat과 같이 다른 프로세스에 내 모듈을 띄우는 것이 아니라
 - 따라서 개발 단계(eclipse 상)에서 디버깅이 수월 
 - startup 속도가 빠름. 일반 java application을 수행하는 것과 같음. 
 - 가볍게 사용할 수 있음. UI, 웹 보안과 같이 서버 레벨에서 불필요한 기능은 삭제되었음. 
-- version 관리, relelase, build 구성 포함. ant + ivy로 이루어짐
-maven은 웹 환경에서는 장점이 있지만, 서버 레벨에서 사용하기는 불편함. 
-또한 makefile에 익숙한 c/c++ 사용자는 ant에 쉽게 적응이 가능
+- ant + ivy로 이루어진 build 구성이 포함되어 있어 컴파일 및 deploy가 쉬움. version 관리, relelase 구성 포함. ant + ivy로 이루어짐
+maven은 웹 환경에서는 장점이 있지만, 서버 레벨에서 사용하기는 불편함. 서버 개발자들은 makefile에 익숙함. 
+makefile에 익숙한 c/c++ 사용자는 ant에 쉽게 적응이 가능
 - request시 동작뿐 아니라, 서버가 시작하자 마자 batch로 수행할 수 있는 기능 제공
 
 전반적으로 (jetty embedded 를 사용하는 것 + 서버 레벨에서 사용)하는 특징을 가짐.
