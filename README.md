@@ -3,12 +3,12 @@
 
 ### What is it
 
-It's a java multi-threaded server container.
+It's a java multi-threaded HTTP server.
 
-- A java process act as a http server.
+- A java process act as a HTTP server.
 - 자신이 개발한 클래스를 간단한 설정을 통해 cask 서버 위에 띄울 수 있음. 
-- Http API를 제공하는 서버를 구현하기 용이하도록 구현되었음. 
-- http request를 받을 수 있도록 할 수 있으며, 요청이 올때 thread 하나가 이 클래스를 실행
+- HTTP API를 제공하는 서버를 구현하기 용이하도록 구현되었음. 
+- HTTP request를 받을 수 있도록 할 수 있으며, 요청이 올때 thread 하나가 이 클래스를 실행
 
 ![Cask](http://www.luxeinacity.com/images/blogs/2013/Glenmorangie-Cask-Masters-Whisky-Programme-2.jpg)
 
