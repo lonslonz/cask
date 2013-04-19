@@ -3,66 +3,49 @@
 
 ### What is it
 
-It's a java multi-threaded HTTP server.
+It's a java multi-threaded HTTP server (container).
 
-- A java process act as a HTTP server.
-- 자신이 개발한 클래스를 간단한 설정을 통해 cask 서버 위에 띄울 수 있음. 
-- HTTP API를 제공하는 서버를 구현하기 용이하도록 구현되었음. 
-- HTTP request를 받을 수 있도록 할 수 있으며, 요청이 올때 thread 하나가 이 클래스를 실행
+- A java process act as a HTTP server (container).
+- It's a container. Your classes can be run on the cask server with simple configuration. 
+- Very easy to implement the server that provide HTTP api.
+- A thread run your class when a request is received.
 
 ![Cask](http://www.luxeinacity.com/images/blogs/2013/Glenmorangie-Cask-Masters-Whisky-Programme-2.jpg)
 
 
 ### Why not tomcat
 
-tomcat과 같은 웹 서버를 사용해도 같은 결과를 낼 수 있으나, 웹이 아닌 서버 레벨에서 사용하기에는 불편한 점이 있음. 
+When you use the Tomcat server, you can get the same result of the Cask server. But the Tomcat is not convenient for using in server level. 
 
-- UI(웹) 서버 + 내부 기능 서버와 같은 구조로 구성되는 경우, 내부 기능 서버는 UI, 웹 보안등 다수의 기능은 불필요함. 
-오직 http request를 받아 처리하여 return을 주기만 하면 됨. 
-- 개발환경(eclipse)에서 tomcat 서버, web context를 별개로 등록해야 함
-- debug시 startup 속도가 상대적으로 느림.
-- Http request만을 처리할 수 있으며 background로 수행되는 방식은 처리할 수 없음.
+- When a system constructed by UI(web) server + internal server, internal server doesn't need the functions such as UI, security, etc. It has only business logic.
+- Your application doesn't execute indepentantly in eclipse's debug mode. You need to register application to tomcat, and execute tomcat not your application
+- Executing tomcat in eclipse is slower than executing normal java program.
+- Tomcat can handel only http requests, background processes which executes forever when server startup are not supported.
 
-### 서버 레벨에서 개발시 필요한 것
+### What is needed in server level. 
 
-- get, post 방식의 http request만 받아, DB 혹은 hadoop에 접근하여 기능을 수행할 수 있으면 됨.
-- 로컬 PC에서 개발 및 디버깅이 손쉬워야 함. 
-- 개발자 편의를 위해서는 startup 속도가 빨라야 함. 
-- 일반 http request 방식의 처리 뿐 아니라 background(batch)로 동작하는 방식의 처리도 필요함. 
-- DB, memory에 저장된 정보를 확인하려면 Junit으로는 불편함. 
-mock을 사용해 테스트하는 것은 실환경과 달라 문제가 발생할 수 있음. 
-DB, memory에 제대로 저장되었는지 확인하기 위한 테스트가 손쉬워야 함. 
+- Needs functions that receive GET, POST http requets, access DB or hadoop, execute business logic. not ui.
+- Development and debugging have to be easy in local PC. 
+- Startup speed has to be fast for programmer.
+- Needs Background(batch) style work.
+- Needs to handle background(batch) work, in addition to handle Http request. 
 
 ### Cask 
 
-- 하나의 jvm 프로세스로 동작함. 
-tomcat과 같이 다른 프로세스에 내 모듈을 띄우는 것이 아니라 , 내 프로세스에 내 모듈을 띄움. 
-- 따라서 개발 단계(eclipse 상)에서 디버깅이 수월 
-- startup 속도가 빠름. 일반 java application을 수행하는 것과 같음. 
-- 가볍게 사용할 수 있음. UI, 웹 보안과 같이 서버 레벨에서 불필요한 기능은 삭제되었음. 
-- ant + ivy로 이루어진 build 구성이 포함되어 있어 컴파일 및 deploy를 위한 환경 구축을 따로 할 필요가 없음. 
-version 관리, relelase 구성 포함. maven은 웹 환경에서는 장점이 있지만, 서버 레벨에서 사용하기는 불편함. 서버 개발자들은 makefile에 익숙함. 
-makefile에 익숙한 c/c++ 사용자는 ant에 쉽게 적응이 가능
-- 서버 startup, stop을 위한 script 포함
-- request시 동작뿐 아니라, 서버가 시작하자 마자 batch로 수행할 수 있는 기능 제공
+- Run as a jvm process. My module doesn't run on other process like tomcat, runs on my process.
+- So, very easy to debug in developing(on eclipse).
+- Startup fast. It's the same as normal java application.  
+- Lightweight. Unnessary functions like UI, web security are removed.
+- It includes bulid configurations constrcted by ant + ivy, so easy to compile, deploy, manage version. sometimes, c/c++ server developers who usually use 'make' confuse using maven. They can use easily ant, because 'ant' and 'make' is similar and 'ant' is easier than 'make'.
+- It includes scripts for startup, stop server.
+- Not only handling logic per http request, but also handling background logic than start when server startup and execute forever until server shutdown.
 
-전반적으로 (jetty embedded 를 사용하는 것 + 서버 레벨에서 사용)하는 특징을 가짐.
-cask 내부 구현은 tomcat embedded + spring 으로 되어 있음.
-
-### Server test  
-
-서버 레벨의 테스트를 위해 다음과 같은 기능을 제공
-
-- Junit 테스트를 추가하면 됨
-- diff 방식의 테스트 결과를 제공
-- 메모리, DB를 dump해서 올바른 결과와 비교할 수 있음
-- hudson에서 결과를 확인할 수 있도록 JUnit test 결과를 산출
-    
+Internally, it implimented by tomcat embedded + spring.
 
 ### Constraints
 
-- UI, 보안 등 다양한 기능이 필요한 경우는 tomcat, jetty를 써야 함
-- http request는 json만 지원
+- If you need various functions as a web server such as UI, security, you have to use Tomcat or jetty.
+- Only support json as a http POST request.
 
 # How to use
 
