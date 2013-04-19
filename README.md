@@ -20,7 +20,7 @@ When you use the Tomcat server, you can get the same result of the Cask server. 
 - When a system constructed by UI(web) server + internal server, internal server doesn't need the functions such as UI, security, etc. It has only business logic.
 - Your application doesn't execute indepentantly in eclipse's debug mode. You need to register application to tomcat, and execute tomcat not your application
 - Executing tomcat in eclipse is slower than executing normal java program.
-- Tomcat can handel only http requests, background processes which executes forever when server startup are not supported.
+- Tomcat can handle only http requests, background processes which executes forever when server startup are not supported.
 
 ### What is needed in server level. 
 
