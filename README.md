@@ -37,7 +37,7 @@ When you use the Tomcat server, you can get the same result of the Cask server. 
 - Lightweight. Unnessary functions like UI, web security are removed.
 - It includes bulid configurations constrcted by ant + ivy, so easy to compile, deploy, manage version. sometimes, c/c++ server developers who usually use 'make' confuse using maven. They can use easily ant, because 'ant' and 'make' is similar and 'ant' is easier than 'make'.
 - It includes scripts for startup, stop server.
-- Not only handling logic per http request, but also handling background logic than start when server startup and execute forever until server shutdown.
+- Not only handling logic per http request, but also handling background logic that starts when server startup and execute forever until server shutdown.
 
 Internally, it implimented by tomcat embedded + spring.
 
