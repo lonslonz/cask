@@ -27,7 +27,6 @@ When you use the Tomcat server, you can get the same result of the Cask server. 
 - Needs implimentation of business logic that executed by GET, POST http requets, accessing DB or hadoop. not ui.
 - Development and debugging have to be easy in local PC. 
 - Startup speed has to be fast for debugging.
-- Needs Background(batch) style work.
 - Needs to handle background(batch) work, in addition to handle Http request. 
 
 ### Cask 
