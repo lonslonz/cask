@@ -1,4 +1,4 @@
-# Cask (Korean)
+# Cask 
 ====
 
 ### What is it
