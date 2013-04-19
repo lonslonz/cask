@@ -24,7 +24,7 @@ When you use the Tomcat server, you can get the same result of the Cask server. 
 
 ### What is needed in server level. 
 
-- Needs functions that receive GET, POST http requets, access DB or hadoop, execute business logic. not ui.
+- Needs implimentation of business logic that executed by GET, POST http requets, accessing DB or hadoop. not ui.
 - Development and debugging have to be easy in local PC. 
 - Startup speed has to be fast for programmer.
 - Needs Background(batch) style work.
