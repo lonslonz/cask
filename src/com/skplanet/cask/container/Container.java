@@ -25,6 +25,8 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.Connector;
+import org.apache.catalina.core.StandardHost;
+import org.apache.catalina.deploy.ErrorPage;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.coyote.AbstractProtocol;
 import org.slf4j.Logger;
@@ -64,7 +66,7 @@ public class Container {
 
     // context dir = /{server.home}/SERVER_BASE_DIR/WEBAPP_BASE_DIR/CONTEXT_BASE_DIR
     // ${server.home} from jvm argument (-Dserver.home).
-    private String SERVER_BASE_DIR = ConfigReader.getInstance().getHome() + "/temp";
+    private String SERVER_BASE_DIR = ConfigReader.getInstance().getHome() + "/web";
     private static final String WEBAPP_BASE_DIR = ".";
     private static final String CONTEXT_BASE_DIR = ".";
 
@@ -137,11 +139,48 @@ public class Container {
         // param.setValue(ROOT_CONTEXT_XML);
         // context.addApplicationParameter(param);
         
+        if(ConfigReader.getInstance().getServerConfig().getServerInfo().getErrorRedirect() != null) {
+            addErrorPages(
+                    context, 
+                    new String[]{"401", "402", "403", "404", "405", "500"}, 
+                    ConfigReader.getInstance().getServerConfig().getServerInfo().getErrorRedirect());
+        }
+        
         servlet = Tomcat.addServlet(context, DISPATCHER_NAME, DISPATCHER_CLASS);
         servlet.addInitParameter("contextConfigLocation", DISPATCHER_XML);
         servlet.setLoadOnStartup(1);
         context.addServletMapping(DISPATCHER_PATH, DISPATCHER_NAME);
-
+        
+        Context defaultContext =  tomcat.addContext("/", ".");
+        Wrapper defaultServlet = defaultContext.createWrapper();
+        defaultServlet.setName("default");
+        
+        defaultServlet.setServletClass("org.apache.catalina.servlets.DefaultServlet");
+        defaultServlet.addInitParameter("debug", "0");
+        defaultServlet.addInitParameter("listings", "false");
+        defaultServlet.setLoadOnStartup(1);
+        defaultContext.addChild(defaultServlet);
+        if(ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect() != null) {
+            addErrorPages(
+                    defaultContext, 
+                    new String[]{"401", "402", "403", "404", "405", "500"}, 
+                    ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect());
+        }
+        defaultContext.addServletMapping("/", "default");
+        
+        //((StandardHost)tomcat.getHost()).setErrorReportValveClass("com.skplanet.cask.container.ErrorReport");
+//        
+        //Context jspContext =  tomcat.addContext("/jsp", "./jsp"); 
+        Wrapper jspServlet = defaultContext.createWrapper();
+        jspServlet.setName("jsp");
+        jspServlet.setServletClass("org.apache.jasper.servlet.JspServlet");
+        jspServlet.addInitParameter("fork", "false");
+        jspServlet.addInitParameter("xpoweredBy", "false");
+        jspServlet.setLoadOnStartup(2);
+        defaultContext.addChild(jspServlet);
+        defaultContext.addServletMapping("*.jsp", "jsp");
+        
+        
         Connector connector = tomcat.getConnector();
         AbstractProtocol protocolHandler = (AbstractProtocol)connector.getProtocolHandler();
 
@@ -206,6 +245,16 @@ public class Container {
     public void stop() throws LifecycleException {
         tomcat.stop();
         tomcat.destroy();
+    }
+    public void addErrorPages(Context ctx, String[] errors, String url) {
+        
+        for(int i = 0; i < errors.length; i++) {
+            
+            ErrorPage error = new ErrorPage();
+            error.setErrorCode(errors[i]);
+            error.setLocation(url);
+            ctx.addErrorPage(error);
+        }
     }
     public void addServices() throws Exception {
 

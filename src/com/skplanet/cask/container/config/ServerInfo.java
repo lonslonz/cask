@@ -21,6 +21,10 @@ public class ServerInfo {
     private String contextPath = null;
     @XmlAttribute
     private String servicePath = null;
+    @XmlAttribute
+    private String errorRedirect = null;
+    @XmlAttribute
+    private String staticErrorRedirect = null;
     
     
     public String getName() {
@@ -79,5 +83,16 @@ public class ServerInfo {
     public String getHttpServerAddr() {
         return "http://localhost:" + getPort() + "/" + getContextPath() + "/" + getServicePath(); 
     }
-   
+    public String getErrorRedirect() {
+        return errorRedirect;
+    }
+    public void setErrorRedirect(String errorRedirect) {
+        this.errorRedirect = errorRedirect;
+    }
+    public String getStaticErrorRedirect() {
+        return staticErrorRedirect;
+    }
+    public void setStaticErrorRedirect(String staticErrorRedirect) {
+        this.staticErrorRedirect = staticErrorRedirect;
+    }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <configuration>
-    <server name="localhost" port="8080" contextPath="/cask" maxThreads="512"/>
+    <server name="localhost" port="8100" contextPath="/cask" maxThreads="512" errorRedirect="/error" staticErrorRedirect="/error.jsp"/>
     <services>
         <service url="/service/simpleget" 
                  class="com.skplanet.cask.service.SimpleRequestService" 
@@ -15,7 +15,11 @@
                  class="com.skplanet.cask.service.SimpleBatchService" 
                  exec="batch" 
                  method="post"
-                 sleepMSec="10000 "/>
+                 sleepMSec="60000 "
+        <service url="/error" 
+                 class="com.skplanet.cask.service.ErrorRedirect" 
+                 exec="request"
+                 method="get"/>
     </services>
 
     <datasources>

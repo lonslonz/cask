@@ -6,7 +6,7 @@
 	<property name="testlib.dir" value="testlib"/>
 	<property name="bin.dir" value="bin"/>
 	<property name="src.dir" value="src"/>
-	<property name="temp.dir" value="temp"/>
+	<property name="web.dir" value="web"/>
 	<property name="logs.dir" value="logs"/>
 	<property name="dist.dir" value="target"/>
 	<property name="classes.dir" value="classes"/>
@@ -58,7 +58,9 @@
 		<copy todir="${dist.dir}/${lib.dir}">
 			<fileset dir="${lib.dir}"/>
 		</copy>
-		<mkdir dir="${dist.dir}/${temp.dir}"/>
+		<copy todir="${dist.dir}/${web.dir}">
+            <fileset dir="${web.dir}"/>
+        </copy>
 		<copy todir="${dist.dir}/${logs.dir}">
 			<fileset dir="${logs.dir}"/>
 		</copy>
