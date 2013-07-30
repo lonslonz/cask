@@ -1,10 +1,14 @@
 
-           Cask Server Vesion 1.0.4
+           Cask Server Vesion 1.0.5
                    Release Notes
 
             http://www.skplanet.co.kr
 
 --------------------
+1.0.5
+- static resource
+- error redirect
+
 1.0.4
 - pid based startup, stop
 - remove unused files.
