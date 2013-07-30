@@ -15,7 +15,7 @@
                  class="com.skplanet.cask.service.SimpleBatchService" 
                  exec="batch" 
                  method="post"
-                 sleepMSec="60000 "
+                 sleepMSec="60000 "/>
         <service url="/error" 
                  class="com.skplanet.cask.service.ErrorRedirect" 
                  exec="request"
