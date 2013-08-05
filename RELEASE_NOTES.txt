@@ -1,10 +1,13 @@
 
-           Cask Server Vesion 1.0.5
+           Cask Server Vesion 1.0.6
                    Release Notes
 
             http://www.skplanet.co.kr
 
 --------------------
+1.0.6
+- put, delete, head error redirect 
+
 1.0.5
 - static resource
 - error redirect

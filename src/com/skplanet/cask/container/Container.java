@@ -27,6 +27,8 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardHost;
 import org.apache.catalina.deploy.ErrorPage;
+import org.apache.catalina.deploy.SecurityCollection;
+import org.apache.catalina.deploy.SecurityConstraint;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.coyote.AbstractProtocol;
 import org.slf4j.Logger;
@@ -142,7 +144,7 @@ public class Container {
         if(ConfigReader.getInstance().getServerConfig().getServerInfo().getErrorRedirect() != null) {
             addErrorPages(
                     context, 
-                    new String[]{"401", "402", "403", "404", "405", "500"}, 
+                    new String[]{"401", "402", "403", "404", "405", "406", "500", "501"}, 
                     ConfigReader.getInstance().getServerConfig().getServerInfo().getErrorRedirect());
         }
         
@@ -150,6 +152,7 @@ public class Container {
         servlet.addInitParameter("contextConfigLocation", DISPATCHER_XML);
         servlet.setLoadOnStartup(1);
         context.addServletMapping(DISPATCHER_PATH, DISPATCHER_NAME);
+
         
         Context defaultContext =  tomcat.addContext("/", ".");
         Wrapper defaultServlet = defaultContext.createWrapper();
@@ -163,9 +166,10 @@ public class Container {
         if(ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect() != null) {
             addErrorPages(
                     defaultContext, 
-                    new String[]{"401", "402", "403", "404", "405", "500"}, 
+                    new String[]{"401", "402", "403", "404", "405", "406", "500", "501"}, 
                     ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect());
         }
+        
         defaultContext.addServletMapping("/", "default");
         
         //((StandardHost)tomcat.getHost()).setErrorReportValveClass("com.skplanet.cask.container.ErrorReport");
@@ -254,7 +258,9 @@ public class Container {
             error.setErrorCode(errors[i]);
             error.setLocation(url);
             ctx.addErrorPage(error);
+        
         }
+
     }
     public void addServices() throws Exception {
 

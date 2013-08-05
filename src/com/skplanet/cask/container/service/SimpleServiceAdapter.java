@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.skplanet.cask.container.ServiceRuntimeInfo;
 import com.skplanet.cask.container.ServiceRuntimeRegistry;
+import com.skplanet.cask.container.config.ConfigReader;
 import com.skplanet.cask.container.model.SimpleParams;
 import com.skplanet.cask.util.StringUtil;
 
@@ -22,7 +23,10 @@ public class SimpleServiceAdapter extends AbstractController implements ServiceA
     Logger logger = LoggerFactory.getLogger(SimpleServiceAdapter.class);
    
     SimpleService service;
-    
+    public SimpleServiceAdapter() {
+        setSupportedMethods(new String[]{"POST", "GET", "HEAD", "PUT", "DELETE", "TRACE", "OPTIONS"});
+        
+    }
     public void setService(SimpleService service) {
        this.service = service;
     }
@@ -38,13 +42,22 @@ public class SimpleServiceAdapter extends AbstractController implements ServiceA
     protected ModelAndView handleRequestInternal(
             HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        
+          
         try {
             if(!(request.getMethod().toUpperCase().equals("POST") || request.getMethod().toUpperCase().equals("GET"))) {
+                if(ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect() != null) {
+                    response.setStatus(204);
+                }
                 throw new Exception("not supoorted http method : " + request.getMethod());
             }
+             
             
+            String test[] = getSupportedMethods();
+           
             if(service == null) {
+                if(ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect() != null) {
+                    response.setStatus(204);
+                }
                 throw new Exception("service not set");
             }
             
@@ -52,6 +65,9 @@ public class SimpleServiceAdapter extends AbstractController implements ServiceA
                     ServiceRuntimeRegistry.getInstance().getServiceRuntimeInfo(request.getPathInfo());
             
             if(!request.getMethod().toUpperCase().equals(runtimeInfo.getMethod().toUpperCase())) {
+                if(ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect() != null) {
+                    response.setStatus(204);
+                }
                 throw new Exception("not supported http method : " + request.getMethod());
             }
             
@@ -73,14 +89,17 @@ public class SimpleServiceAdapter extends AbstractController implements ServiceA
                 mapperMap = new HashMap<String, Object>();
                 makeParams(request, mapperMap);
             }
-            
+             
             sRequest.setParams(mapperMap);
             sRequest.setModelObject(mapperObj);
             
             service.handle(sRequest, sResponse, runtimeInfo);
             
             response.setStatus(HttpServletResponse.SC_OK);
-            response.setContentType("application/json");
+            if(ConfigReader.getInstance().getServerConfig().getServerInfo().getStaticErrorRedirect() == null) {
+                response.setContentType("application/json");
+            } // else error redirect for skp
+            
             
             if(runtimeInfo.getOutClass() != null) {
                 mapper.writeValue(response.getOutputStream(), sResponse.getModelObject());
