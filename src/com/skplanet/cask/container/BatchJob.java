@@ -73,7 +73,7 @@ public class BatchJob extends Thread {
         mapperMap.put("sleepMSec", sleepMSec);
         content = mapper.writeValueAsString(mapperMap);
     
-        Map<String, Object> resp = HttpUtil.sendSimpleHttpPut(url, content);
+        Map<String, Object> resp = HttpUtil.sendSimpleHttpPut(url, content, null);
         return resp;
     }
     

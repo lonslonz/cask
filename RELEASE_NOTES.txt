@@ -1,10 +1,13 @@
 
-           Cask Server Vesion 1.0.6
+           Cask Server Vesion 1.0.7
                    Release Notes
 
             http://www.skplanet.co.kr
 
 --------------------
+1.0.7
+- fix http timeout 
+
 1.0.6
 - put, delete, head error redirect 
 
