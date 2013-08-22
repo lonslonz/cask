@@ -16,7 +16,8 @@
 	<property file="${src.dir}/version.properties"/>
 	<property name="version" value="${VERSION}"/>
 	 <property name="dist.dir" value="${ant.project.name}-${version}"/>
-	<property name="jar.name" value="${ant.project.name}-${version}.jar"/>
+	<property name="jar.file" value="${ant.project.name}-${version}.jar"/>
+	<property name="tar.file" value="${ant.project.name}-${version}.tar.gz"/>
 
 	<property environment="env"/>
         <property name="github.repo.local" value="${env.GITHUB_MAVEN_REPO}"/>
@@ -28,9 +29,10 @@
 	</path>
 	
 	<target name="clean">
-			<delete dir="${classes.dir}"/>
-			<delete dir="${dist.dir}"/>
-		</target>
+		<delete dir="${classes.dir}"/>
+		<delete dir="${dist.dir}"/>
+		<delete file="${tar.file}"/>
+	</target>
 	
 	<target name="init">
 		<mkdir dir="${classes.dir}"/>
@@ -69,8 +71,8 @@
 			<fileset dir="${test.dir}"/>
 		</copy>
 		<copy file="${release.txt}" todir="${dist.dir}"/>
-		<jar jarfile="${dist.dir}/${bin.dir}/${jar.name}" basedir="${classes.dir}" />
-		<tar compression="gzip" destfile="${ant.project.name}-${version}.tar.gz">
+		<jar jarfile="${dist.dir}/${bin.dir}/${jar.file}" basedir="${classes.dir}" />
+		<tar compression="gzip" destfile="${tar.file}">
             <tarfileset dir="${dist.dir}" prefix="${dist.dir}">
             </tarfileset>
         </tar>
