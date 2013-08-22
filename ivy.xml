@@ -30,7 +30,6 @@
         <dependency org="commons-lang" name="commons-lang" rev="2.6" transitive="false"/>
         <dependency org="org.apache.ant" name="ant" rev="1.8.4" transitive="false"/>
         <dependency org="org.apache.ant" name="ant-launcher" rev="1.8.4" transitive="false"/>
-            
         
         <dependency org="commons-logging" name="commons-logging" rev="1.1.1"  transitive="false"/>
         <dependency org="commons-configuration" name="commons-configuration" rev="1.8" transitive="false"/>
@@ -57,10 +56,12 @@
 	
 		<dependency org="org.apache.tomcat.embed" name="tomcat-embed-core" rev="7.0.28" transitive="false"/>
 		<dependency org="org.apache.tomcat.embed" name="tomcat-embed-jasper" rev="7.0.28"  transitive="false"/>
+		
 		<dependency org="org.apache.tomcat" name="tomcat-dbcp" rev="7.0.28" transitive="false"/>
         <dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.28" transitive="false"/>
         <dependency org="org.apache.tomcat.extras" name="tomcat-extras-juli" rev="7.0.29" transitive="false"/>
         <dependency org="org.apache.tomcat.extras" name="tomcat-extras-juli-adapters" rev="7.0.29" transitive="false"/>
+        <dependency org="org.eclipse.jdt.core.compiler" name="ecj" rev="4.2.2" transitive="false"/>
         
         <dependency org="org.springframework" name="spring-core" rev="3.1.1.RELEASE" transitive="false"/>
         <dependency org="org.springframework" name="spring-aop" rev="3.1.1.RELEASE" transitive="false"/>

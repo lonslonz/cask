@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <configuration>
-    <server name="localhost" port="8100" contextPath="/cask" maxThreads="512" errorRedirect="/error" staticErrorRedirect="/error.jsp"/>
+    <server name="localhost" port="8100" contextPath="/cask" maxThreads="512" /> 
+    <!-- error redirect to display simple empty message  
+    <server name="localhost" port="8100" contextPath="/cask" maxThreads="512" errorRedirect="/error" staticErrorRedirect="/error.jsp"/> -->
     <services>
         <service url="/service/simpleget" 
                  class="com.skplanet.cask.service.SimpleRequestService" 

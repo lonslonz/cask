@@ -8,7 +8,6 @@
 	<property name="src.dir" value="src"/>
 	<property name="web.dir" value="web"/>
 	<property name="logs.dir" value="logs"/>
-	<property name="dist.dir" value="target"/>
 	<property name="classes.dir" value="classes"/>
 	<property name="release.txt" value="RELEASE_NOTES.txt"/>
 	<property name="test.dir" value="test"/>
@@ -16,6 +15,7 @@
 	
 	<property file="${src.dir}/version.properties"/>
 	<property name="version" value="${VERSION}"/>
+	 <property name="dist.dir" value="${ant.project.name}-${version}"/>
 	<property name="jar.name" value="${ant.project.name}-${version}.jar"/>
 
 	<property environment="env"/>
@@ -58,6 +58,7 @@
 		<copy todir="${dist.dir}/${lib.dir}">
 			<fileset dir="${lib.dir}"/>
 		</copy>
+		<copy file="${release.txt}" tofile="${web.dir}/releasenotes"/>
 		<copy todir="${dist.dir}/${web.dir}">
             <fileset dir="${web.dir}"/>
         </copy>
@@ -69,6 +70,11 @@
 		</copy>
 		<copy file="${release.txt}" todir="${dist.dir}"/>
 		<jar jarfile="${dist.dir}/${bin.dir}/${jar.name}" basedir="${classes.dir}" />
+		<tar compression="gzip" destfile="${ant.project.name}-${version}.tar.gz">
+            <tarfileset dir="${dist.dir}" prefix="${dist.dir}">
+            </tarfileset>
+        </tar>
+		
 	</target>
 	<target name="resolve" description="--> retreive dependencies with ivy">
         <ivy:retrieve type="jar" sync="true"/>

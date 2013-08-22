@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="lib/tomcat-jdbc-7.0.28.jar"/>
 	<classpathentry kind="lib" path="lib/tomcat-embed-core-7.0.28.jar"/>
 	<classpathentry kind="lib" path="lib/tomcat-embed-jasper-7.0.28.jar"/>
+	<classpathentry kind="lib" path="lib/ecj-4.2.2.jar"/>
 	<classpathentry kind="output" path="output"/>
 </classpath>
