@@ -1,10 +1,15 @@
 
-           Cask Server Vesion 1.0.7
+           Cask Server Vesion 1.0.8
                    Release Notes
 
             http://www.skplanet.co.kr
 
 --------------------
+1.0.8
+- fix static jsp execution error
+- see original format of the release notes
+  
+
 1.0.7
 - fix http timeout 
 
