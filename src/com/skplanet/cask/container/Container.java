@@ -112,6 +112,10 @@ public class Container {
         tomcat.setPort(serverConfig.getServerInfo().getPort());
         tomcat.setBaseDir(SERVER_BASE_DIR);
 
+        // connection close
+        // set maxKeepAliveRequests = 1 : for keep-alive disable
+        tomcat.getConnector().setAttribute("maxKeepAliveRequests", 1);
+
         InetAddress addr = InetAddress.getByName(serverConfig.getServerInfo().getName());
         hostName = addr.getHostName();
         

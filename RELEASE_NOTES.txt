@@ -1,10 +1,13 @@
 
-           Cask Server Vesion 1.0.8
+           Cask Server Vesion 1.0.9
                    Release Notes
 
             http://www.skplanet.co.kr
 
 --------------------
+1.0.9
+- #1 : keep alive diable. 
+
 1.0.8
 - fix static jsp execution error
 - see original format of the release notes
