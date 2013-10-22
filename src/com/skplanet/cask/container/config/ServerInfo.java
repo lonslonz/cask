@@ -25,7 +25,8 @@ public class ServerInfo {
     private String errorRedirect = null;
     @XmlAttribute
     private String staticErrorRedirect = null;
-    
+    @XmlAttribute
+    private String uriEncoding = null;
     
     public String getName() {
         return name;
@@ -95,4 +96,11 @@ public class ServerInfo {
     public void setStaticErrorRedirect(String staticErrorRedirect) {
         this.staticErrorRedirect = staticErrorRedirect;
     }
+    public String getUriEncoding() {
+        return uriEncoding;
+    }
+    public void setUriEncoding(String uriEncoding) {
+        this.uriEncoding = uriEncoding;
+    }
+    
 }

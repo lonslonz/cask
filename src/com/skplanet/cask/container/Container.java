@@ -115,6 +115,9 @@ public class Container {
         // connection close
         // set maxKeepAliveRequests = 1 : for keep-alive disable
         tomcat.getConnector().setAttribute("maxKeepAliveRequests", 1);
+        if(ConfigReader.getInstance().getServerConfig().getServerInfo().getUriEncoding() != null) {
+            tomcat.getConnector().setURIEncoding(ConfigReader.getInstance().getServerConfig().getServerInfo().getUriEncoding());    
+        }
 
         InetAddress addr = InetAddress.getByName(serverConfig.getServerInfo().getName());
         hostName = addr.getHostName();

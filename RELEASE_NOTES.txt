@@ -1,10 +1,13 @@
 
-           Cask Server Vesion 1.0.9
+           Cask Server Vesion 1.0.10
                    Release Notes
 
             http://www.skplanet.co.kr
 
 --------------------
+1.0.10
+- #2 : utf-8 support.
+
 1.0.9
 - #1 : keep alive diable. 
 
